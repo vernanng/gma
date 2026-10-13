@@ -264,6 +264,8 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
 .icon-btn{background:var(--surface);border:0;box-shadow:var(--elev-ring);border-radius:var(--radius-lg);width:36px;height:36px;font-size:var(--text-lg);color:var(--fg)}
 .icon-btn:hover{background:var(--surface-warm)}
 .total{display:flex;justify-content:space-between;font-weight:600;font-size:var(--text-lg);border-top:1px solid var(--border-soft);padding-top:var(--space-4)}
+.date-range{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-2);align-items:center}
+.date-range span{color:var(--muted);font-weight:600}
 .check{display:flex;gap:var(--space-3);align-items:center;font-size:var(--text-base);font-weight:500}
 .check input{width:18px;height:18px;accent-color:var(--accent)}
 .dialog-note{font-size:var(--text-sm);color:var(--muted)}
@@ -478,8 +480,8 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
       <div><p class="eyebrow" data-en="Book this car" data-id="Pesan mobil ini">Book this car</p><h3 id="dialog-title">—</h3></div>
       <button class="icon-btn" type="button" id="dialog-close" aria-label="Close">×</button>
     </div>
-    <div class="field"><label for="bk-date" data-en="Rental date" data-id="Tanggal sewa">Rental date</label><input type="date" id="bk-date" required=""><span class="field-error" id="bk-error" data-en="Add your name and a date to continue." data-id="Isi nama dan tanggal untuk lanjut.">Add your name and a date to continue.</span></div>
-    <div class="field"><label for="bk-days" data-en="Duration (days)" data-id="Durasi (hari)">Duration (days)</label><select id="bk-days"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+    <div class="field"><label for="bk-start" data-en="Rental dates (START–END)" data-id="Tanggal sewa (MULAI–SELESAI)">Rental dates (START–END)</label><div class="date-range"><input type="date" id="bk-start" aria-label="Start date" required=""><span aria-hidden="true">–</span><input type="date" id="bk-end" aria-label="End date" required=""></div><span class="field-error" id="bk-error" data-en="Add your name and a START–END date range to continue." data-id="Isi nama dan rentang tanggal MULAI–SELESAI untuk lanjut.">Add your name and a START–END date range to continue.</span></div>
+    <div class="field"><label for="bk-days" data-en="Duration (auto)" data-id="Durasi (otomatis)">Duration (auto)</label><input type="text" id="bk-days" readonly="" value="—"></div>
     <div class="field"><label for="bk-pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label><select id="bk-pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="port" data-en="At the port" data-id="Di pelabuhan">At the port</option></select></div>
     <div class="field"><label for="bk-name" data-en="Your name" data-id="Nama kamu">Your name</label><input type="text" id="bk-name" autocomplete="name" required=""></div>
     <div class="total"><span data-en="Estimated total" data-id="Estimasi total">Estimated total</span><span class="num" id="bk-total">—</span></div>
@@ -575,23 +577,34 @@ document.getElementById("lang-id").addEventListener("click",()=>{lang="id";apply
 
 /* booking dialog */
 const dlg=document.getElementById("book-dialog");
-function total(){ if(!selected) return; const d=+document.getElementById("bk-days").value; document.getElementById("bk-total").textContent=fmt(selected.price*d); }
+const DAY=86400000, fmtDay=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"), todayStr=()=>fmtDay(new Date());
+const addDays=(v,n)=>{const d=new Date(v+"T00:00:00");d.setDate(d.getDate()+n);return fmtDay(d);};
+function rangeDays(){ const s=document.getElementById("bk-start").value,e=document.getElementById("bk-end").value; if(!s||!e) return 0; return Math.round((new Date(e)-new Date(s))/DAY)+1; }
+function total(){ if(!selected) return; const d=rangeDays(); document.getElementById("bk-total").textContent=d>0?fmt(selected.price*d):"—"; }
+function syncRange(){
+  const s=document.getElementById("bk-start"),e=document.getElementById("bk-end"),today=todayStr();
+  s.min=today; if(s.value&&s.value<today) s.value=today;
+  e.min=s.value||today; if(e.value&&e.value<e.min) e.value=e.min;
+  s.setAttribute("aria-label",lang==="id"?"Tanggal mulai":"Start date"); e.setAttribute("aria-label",lang==="id"?"Tanggal selesai":"End date");
+  const d=rangeDays(); document.getElementById("bk-days").value=d>0?d+" "+(lang==="id"?"hari":"day(s)"):"—"; total();
+}
 function openBook(id){
   selected=CARS.find(c=>c.id===id);
   document.getElementById("dialog-title").textContent=selected.name+" · "+fmt(selected.price)+(lang==="id"?"/hari":"/day");
-  document.getElementById("bk-date").value=document.getElementById("date").value;
-  document.getElementById("bk-days").value=document.getElementById("days").value;
+  const barDate=document.getElementById("date").value, start=barDate&&barDate>=todayStr()?barDate:todayStr();
+  document.getElementById("bk-start").value=start;
+  document.getElementById("bk-end").value=addDays(start,(+document.getElementById("days").value||1)-1);
   document.getElementById("bk-pickup").value=document.getElementById("pickup").value;
-  document.getElementById("bk-error").classList.remove("show"); total(); dlg.showModal();
+  document.getElementById("bk-error").classList.remove("show"); syncRange(); dlg.showModal();
 }
-["bk-days"].forEach(i=>document.getElementById(i).addEventListener("change",total));
+["bk-start","bk-end"].forEach(i=>document.getElementById(i).addEventListener("change",syncRange));
 document.querySelectorAll("[data-promo-book]").forEach(b=>b.addEventListener("click",()=>openBook(b.dataset.promoBook)));
 document.getElementById("dialog-close").addEventListener("click",()=>dlg.close());
 document.getElementById("book-form").addEventListener("submit",e=>{
-  const name=document.getElementById("bk-name").value.trim(), date=document.getElementById("bk-date").value;
-  if(!name||!date){ e.preventDefault(); document.getElementById("bk-error").classList.add("show"); return; }
-  const days=document.getElementById("bk-days").value, pickup=document.getElementById("bk-pickup").value==="port"?(lang==="id"?"Pelabuhan":"Port"):(lang==="id"?"Kantor Golden":"Golden office");
-  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name}. I would like to rent the ${selected.name} on ${date} for ${days} day(s), pickup: ${pickup}. Estimated total: ${fmt(selected.price*days)}.`);
+  const name=document.getElementById("bk-name").value.trim(), start=document.getElementById("bk-start").value, end=document.getElementById("bk-end").value, days=rangeDays();
+  if(!name||!start||!end||days<1){ e.preventDefault(); document.getElementById("bk-error").classList.add("show"); return; }
+  const pickup=document.getElementById("bk-pickup").value==="port"?(lang==="id"?"Pelabuhan":"Port"):(lang==="id"?"Kantor Golden":"Golden office");
+  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name}. I would like to rent the ${selected.name} from ${start} to ${end} (${days} day(s)), pickup: ${pickup}. Estimated total: ${fmt(selected.price*days)}.`);
   window.open("https://wa.me/628117007717?text="+msg,"_blank");
 });
 document.getElementById("booking-bar").addEventListener("submit",e=>{
