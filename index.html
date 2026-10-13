@@ -162,6 +162,28 @@ h3{font-size:var(--text-lg)}
 .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);align-items:center}
 @media(max-width:920px){.hero-split{grid-template-columns:1fr}}
 .hero-img{width:100%;height:auto;border-radius:var(--radius-lg);box-shadow:var(--elev-ring)}
+/* hero car slider (scoped to the hero visual) */
+.car-slider{position:relative;border-radius:var(--radius-lg);box-shadow:var(--elev-ring),var(--elev-raised);background:var(--surface);overflow:hidden}
+.car-slider-viewport{overflow:hidden}
+.car-slider-track{display:flex;transition:transform var(--motion-base) var(--ease-standard)}
+.car-slide{flex:0 0 100%;margin:0}
+.car-slide-media{background:var(--surface-warm);border-bottom:1px solid var(--border-soft)}
+.car-slide-media img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain}
+.car-slide-cap{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:var(--space-3) var(--space-4);flex-wrap:wrap}
+.car-slide-name{font-weight:600;font-size:var(--text-lg);line-height:var(--leading-tight)}
+.car-slide-spec{font-size:var(--text-sm);color:var(--muted)}
+.car-slide-foot{display:flex;align-items:center;gap:var(--space-3)}
+.car-slide-price{font-weight:600}
+.car-slide-price small{display:block;font-weight:400;font-size:var(--text-xs);color:var(--muted)}
+.car-slider-btn{position:absolute;top:34%;width:36px;height:36px;border-radius:var(--radius-pill);border:0;background:var(--surface);color:var(--fg);box-shadow:var(--elev-ring),var(--elev-raised);font-size:20px;line-height:1;display:inline-flex;align-items:center;justify-content:center;z-index:2}
+.car-slider-btn:hover{background:var(--surface-warm)}
+.car-slider-prev{left:var(--space-3)}
+.car-slider-next{right:var(--space-3)}
+.car-slider-bar{display:flex;align-items:center;justify-content:center;gap:var(--space-3);padding:0 var(--space-4) var(--space-3)}
+.car-slider-dots{display:flex;gap:var(--space-2)}
+.car-slider-dot{width:8px;height:8px;border-radius:var(--radius-pill);border:0;padding:0;background:var(--border-soft);box-shadow:var(--elev-ring)}
+.car-slider-dot[aria-current="true"]{background:var(--fg)}
+.car-slider-count{font-size:var(--text-xs);color:var(--muted)}
 .hero-cta{display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-6)}
 .booking-bar{margin-top:var(--space-8);padding:var(--space-4);display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:var(--space-3);align-items:end}
 @media(max-width:920px){.booking-bar{grid-template-columns:1fr}}
@@ -282,7 +304,12 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
             <a class="btn" href="#batam" data-en="Where to go in Batam" data-id="Destinasi di Batam">Where to go in Batam</a>
           </div>
         </div>
-        <img class="hero-img" src="assets/barelang-bridge.jpg" alt="Barelang Bridge, Batam" width="900" height="600">
+        <div class="car-slider" id="car-slider" data-od-id="hero-car-slider" role="region" aria-roledescription="carousel" aria-label="Golden Fleets cars">
+          <div class="car-slider-viewport"><div class="car-slider-track" id="car-slider-track"></div></div>
+          <button type="button" class="car-slider-btn car-slider-prev" id="car-slider-prev" aria-label="Previous car">&lsaquo;</button>
+          <button type="button" class="car-slider-btn car-slider-next" id="car-slider-next" aria-label="Next car">&rsaquo;</button>
+          <div class="car-slider-bar"><div class="car-slider-dots" id="car-slider-dots"></div><span class="car-slider-count num" id="car-slider-count"></span></div>
+        </div>
       </div>
       <form class="booking-bar panel" id="booking-bar" data-od-id="booking-bar" novalidate="">
         <div class="field">
@@ -501,12 +528,48 @@ function render(){
    </article>`).join("");
   grid.querySelectorAll("[data-book]").forEach(b=>b.addEventListener("click",()=>openBook(b.dataset.book)));
 }
+/* hero car slider */
+let slide=0, slideTimer=null;
+const sliderEl=document.getElementById("car-slider"), track=document.getElementById("car-slider-track"), dotsEl=document.getElementById("car-slider-dots");
+function goSlide(i){
+  slide=(i+CARS.length)%CARS.length;
+  track.style.transform=`translateX(-${slide*100}%)`;
+  dotsEl.querySelectorAll(".car-slider-dot").forEach((d,j)=>d.setAttribute("aria-current",j===slide));
+  document.getElementById("car-slider-count").textContent=(slide+1)+" / "+CARS.length;
+}
+function startSlides(){
+  clearInterval(slideTimer);
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  slideTimer=setInterval(()=>goSlide(slide+1),4500);
+}
+function renderSlide(){
+  track.innerHTML=CARS.map(c=>`
+   <figure class="car-slide">
+     <div class="car-slide-media"><img src="${c.img}" alt="${c.name}" width="800" height="800"></div>
+     <figcaption class="car-slide-cap">
+       <div><div class="car-slide-name">${c.name}</div><div class="car-slide-spec">${lang==="id"?c.specId:c.specEn}</div></div>
+       <div class="car-slide-foot"><span class="car-slide-price num">${fmt(c.price)}<small>${lang==="id"?"mulai dari / hari":"start from / day"}</small></span><button type="button" class="btn btn-primary" data-slide-book="${c.id}">${lang==="id"?"Pesan":"Book"}</button></div>
+     </figcaption>
+   </figure>`).join("");
+  dotsEl.innerHTML=CARS.map((c,j)=>`<button type="button" class="car-slider-dot" data-slide-dot="${j}" aria-label="${c.name}"></button>`).join("");
+  track.querySelectorAll("[data-slide-book]").forEach(b=>b.addEventListener("click",()=>openBook(b.dataset.slideBook)));
+  dotsEl.querySelectorAll("[data-slide-dot]").forEach(d=>d.addEventListener("click",()=>{goSlide(+d.dataset.slideDot);startSlides();}));
+  document.getElementById("car-slider-prev").setAttribute("aria-label",lang==="id"?"Mobil sebelumnya":"Previous car");
+  document.getElementById("car-slider-next").setAttribute("aria-label",lang==="id"?"Mobil berikutnya":"Next car");
+  goSlide(slide); startSlides();
+}
+document.getElementById("car-slider-prev").addEventListener("click",()=>{goSlide(slide-1);startSlides();});
+document.getElementById("car-slider-next").addEventListener("click",()=>{goSlide(slide+1);startSlides();});
+sliderEl.addEventListener("pointerenter",()=>clearInterval(slideTimer));
+sliderEl.addEventListener("pointerleave",startSlides);
+sliderEl.addEventListener("focusin",()=>clearInterval(slideTimer));
+sliderEl.addEventListener("focusout",startSlides);
 function applyLang(){
   document.documentElement.lang=lang==="id"?"id":"en";
   document.getElementById("lang-en").setAttribute("aria-pressed",lang==="en");
   document.getElementById("lang-id").setAttribute("aria-pressed",lang==="id");
   document.querySelectorAll("[data-en]").forEach(el=>{el.textContent=lang==="id"?el.dataset.id:el.dataset.en;});
-  localStorage.setItem("gm-lang",lang); render();
+  localStorage.setItem("gm-lang",lang); render(); renderSlide();
 }
 document.getElementById("lang-en").addEventListener("click",()=>{lang="en";applyLang();});
 document.getElementById("lang-id").addEventListener("click",()=>{lang="id";applyLang();});
