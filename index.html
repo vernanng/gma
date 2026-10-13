@@ -470,8 +470,11 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
       <div><p class="eyebrow" data-en="Book this car" data-id="Pesan mobil ini">Book this car</p><h3 id="dialog-title">—</h3></div>
       <button class="icon-btn" type="button" id="dialog-close" aria-label="Close">×</button>
     </div>
-    <div class="field"><label for="bk-start" data-en="Rental dates (START–END)" data-id="Tanggal sewa (MULAI–SELESAI)">Rental dates (START–END)</label><div class="date-range"><input type="date" id="bk-start" aria-label="Start date" required=""><span aria-hidden="true">–</span><input type="date" id="bk-end" aria-label="End date" required=""></div><span class="field-error" id="bk-error" data-en="Add your name and a START–END date range to continue." data-id="Isi nama dan rentang tanggal MULAI–SELESAI untuk lanjut.">Add your name and a START–END date range to continue.</span></div>
-    <div class="field"><label for="bk-pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label><select id="bk-pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="ferry-batam-centre" data-en="Batam Centre Ferry Terminal" data-id="Terminal Ferry Batam Centre">Batam Centre Ferry Terminal</option><option value="ferry-harbour-bay" data-en="Harbour Bay Ferry Terminal" data-id="Terminal Ferry Harbour Bay">Harbour Bay Ferry Terminal</option><option value="ferry-sekupang" data-en="Sekupang Ferry Terminal" data-id="Terminal Ferry Sekupang">Sekupang Ferry Terminal</option><option value="ferry-nongsapura" data-en="Nongsapura Ferry Terminal" data-id="Terminal Ferry Nongsapura">Nongsapura Ferry Terminal</option><option value="ferry-teluk-senimba" data-en="Teluk Senimba Ferry Terminal (Waterfront City)" data-id="Terminal Ferry Teluk Senimba (Waterfront City)">Teluk Senimba Ferry Terminal (Waterfront City)</option><option value="ferry-telaga-punggur" data-en="Telaga Punggur Ferry Terminal" data-id="Terminal Ferry Telaga Punggur">Telaga Punggur Ferry Terminal</option><option value="ferry-bengkong" data-en="Bengkong Harbour" data-id="Bengkong Harbour">Bengkong Harbour</option><option value="airport-hang-nadim" data-en="Hang Nadim International Airport (BTH)" data-id="Bandara Internasional Hang Nadim (BTH)">Hang Nadim International Airport (BTH)</option></select></div>
+    <div class="field"><label for="bk-start" data-en="Rental dates (START–END)" data-id="Tanggal sewa (MULAI–SELESAI)">Rental dates (START–END)</label><div class="date-range"><input type="date" id="bk-start" aria-label="Start date" required=""><span aria-hidden="true">–</span><input type="date" id="bk-end" aria-label="End date" required=""></div><span class="field-error" id="bk-error" data-en="Add your name, phone number and a START–END date range to continue." data-id="Isi nama, nomor HP dan rentang tanggal MULAI–SELESAI untuk lanjut.">Add your name, phone number and a START–END date range to continue.</span></div>
+    <div class="field"><label for="bk-pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label><select id="bk-pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="ferry-batam-centre" data-en="Batam Centre Ferry Terminal" data-id="Terminal Ferry Batam Centre">Batam Centre Ferry Terminal</option><option value="ferry-harbour-bay" data-en="Harbour Bay Ferry Terminal" data-id="Terminal Ferry Harbour Bay">Harbour Bay Ferry Terminal</option><option value="ferry-sekupang" data-en="Sekupang Ferry Terminal" data-id="Terminal Ferry Sekupang">Sekupang Ferry Terminal</option><option value="ferry-nongsapura" data-en="Nongsapura Ferry Terminal" data-id="Terminal Ferry Nongsapura">Nongsapura Ferry Terminal</option><option value="ferry-teluk-senimba" data-en="Teluk Senimba Ferry Terminal (Waterfront City)" data-id="Terminal Ferry Teluk Senimba (Waterfront City)">Teluk Senimba Ferry Terminal (Waterfront City)</option><option value="ferry-telaga-punggur" data-en="Telaga Punggur Ferry Terminal" data-id="Terminal Ferry Telaga Punggur">Telaga Punggur Ferry Terminal</option><option value="ferry-bengkong" data-en="Bengkong Harbour" data-id="Bengkong Harbour">Bengkong Harbour</option><option value="airport-hang-nadim" data-en="Hang Nadim International Airport (BTH)" data-id="Bandara Internasional Hang Nadim (BTH)">Hang Nadim International Airport (BTH)</option><option value="custom" data-en="Custom location — tell us where" data-id="Lokasi lain — beri tahu kami">Custom location — tell us where</option></select></div>
+    <div class="field" id="bk-custom-wrap" hidden=""><label for="bk-custom" data-en="Your pickup location" data-id="Lokasi pengambilan kamu">Your pickup location</label><input type="text" id="bk-custom" autocomplete="street-address" placeholder="Hotel / address in Batam"></div>
+    <div class="field"><label for="bk-trip" data-en="Flight / Ferry number (optional)" data-id="Nomor penerbangan / ferry (opsional)">Flight / Ferry number (optional)</label><input type="text" id="bk-trip" autocomplete="off" inputmode="text" placeholder="JT 821 / Majestic 10:30"></div>
+    <div class="field"><label for="bk-phone" data-en="Phone / WhatsApp number" data-id="Nomor HP / WhatsApp">Phone / WhatsApp number</label><input type="tel" id="bk-phone" autocomplete="tel" inputmode="tel" required=""></div>
     <div class="field"><label for="bk-name" data-en="Your name" data-id="Nama kamu">Your name</label><input type="text" id="bk-name" autocomplete="name" required=""></div>
     <div class="total"><span data-en="Estimated total" data-id="Estimasi total">Estimated total</span><span class="num" id="bk-total">—</span></div>
     <button class="btn btn-primary btn-block" type="submit" data-en="Confirm via WhatsApp" data-id="Konfirmasi via WhatsApp">Confirm via WhatsApp</button>
@@ -582,16 +585,28 @@ function openBook(id){
   const start=todayStr();
   document.getElementById("bk-start").value=start;
   document.getElementById("bk-end").value=start;
+  document.getElementById("bk-custom-wrap").hidden=true;
+  document.getElementById("bk-custom").value="";
+  document.getElementById("bk-trip").value="";
+  document.getElementById("bk-phone").value="";
   document.getElementById("bk-error").classList.remove("show"); syncRange(); dlg.showModal();
 }
 ["bk-start","bk-end"].forEach(i=>document.getElementById(i).addEventListener("change",syncRange));
+document.getElementById("bk-pickup").addEventListener("change",()=>{
+  const custom=document.getElementById("bk-pickup").value==="custom";
+  document.getElementById("bk-custom-wrap").hidden=!custom;
+  if(custom) document.getElementById("bk-custom").focus();
+});
 document.querySelectorAll("[data-promo-book]").forEach(b=>b.addEventListener("click",()=>openBook(b.dataset.promoBook)));
 document.getElementById("dialog-close").addEventListener("click",()=>dlg.close());
 document.getElementById("book-form").addEventListener("submit",e=>{
   const name=document.getElementById("bk-name").value.trim(), start=document.getElementById("bk-start").value, end=document.getElementById("bk-end").value, days=rangeDays();
-  if(!name||!start||!end||days<1){ e.preventDefault(); document.getElementById("bk-error").classList.add("show"); return; }
-  const pickup=document.getElementById("bk-pickup").selectedOptions[0].textContent.trim();
-  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name}. I would like to rent the ${selected.name} from ${start} to ${end} (${days} day(s)), pickup: ${pickup}. Estimated total: ${fmt(selected.price*days)}.`);
+  const phone=document.getElementById("bk-phone").value.trim(), trip=document.getElementById("bk-trip").value.trim();
+  const isCustom=document.getElementById("bk-pickup").value==="custom", custom=document.getElementById("bk-custom").value.trim();
+  if(!name||!phone||!start||!end||days<1||(isCustom&&!custom)){ e.preventDefault(); document.getElementById("bk-error").classList.add("show"); return; }
+  const pickup=isCustom?custom:document.getElementById("bk-pickup").selectedOptions[0].textContent.trim();
+  const tripPart=trip?`, flight/ferry: ${trip}`:"";
+  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name} (${phone}). I would like to rent the ${selected.name} from ${start} to ${end} (${days} day(s)), pickup: ${pickup}${tripPart}. Estimated total: ${fmt(selected.price*days)}.`);
   window.open("https://wa.me/628117007717?text="+msg,"_blank");
 });
 applyLang();
