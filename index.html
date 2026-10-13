@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Mobil Auto — Car Rental in Batam</title>
+<meta name="description" content="One-click car rental in Batam, with or without a driver. Pick up at the Golden office or at the port.">
+<link rel="icon" href="assets/logo-gm-w.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --surface:#edf1fa; --fg:#0b0a32; --muted:#777777;
+  --border:#dddddd; --accent:#cbbd5a; --blue:#1d65c4;
+  --font-display:Lato,Arial,Helvetica,sans-serif;
+  --font-body:Lato,Arial,Helvetica,sans-serif;
+  --radius:10px; --radius-sm:5px; --container:1222px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+p{text-wrap:pretty;margin:0}
+h1,h2,h3{text-wrap:balance;font-family:var(--font-display);margin:0}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.container{max-width:var(--container);margin-inline:auto;padding-inline:24px}
+.section{padding-block:64px}
+.section--tint{background:var(--surface)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:0 0 12px}
+h1{font-size:clamp(36px,4.6vw,56px);line-height:1.08;font-weight:900;letter-spacing:-.01em}
+h2{font-size:clamp(28px,3.4vw,40px);line-height:1.15;font-weight:900}
+h3{font-size:19px;line-height:1.3;font-weight:700}
+.lead{font-size:18px;color:var(--muted);max-width:56ch;margin-top:16px}
+.section-head{max-width:640px;margin-bottom:32px}
+.section-head .lead{font-size:16px;margin-top:8px}
+
+/* header */
+.topnav{position:sticky;top:0;z-index:20;background:var(--fg);color:var(--bg)}
+.topnav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:12px}
+.logo-img{width:200px;height:auto}
+.topnav nav{display:flex;gap:28px}
+.topnav nav a{font-size:14px;font-weight:700;text-transform:capitalize;color:var(--bg);opacity:.85}
+.topnav nav a:hover{opacity:1;color:var(--accent)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.lang-toggle{display:flex;border:1px solid var(--muted);border-radius:var(--radius-sm);overflow:hidden}
+.lang-toggle button{background:transparent;border:0;color:var(--bg);font-size:13px;font-weight:700;padding:8px 12px;min-height:36px}
+.lang-toggle button[aria-pressed="true"]{background:var(--accent);color:var(--fg)}
+@media(max-width:920px){.topnav nav{display:none}.logo-img{width:150px}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:var(--radius-sm);border:1px solid transparent;font-size:15px;font-weight:700;text-transform:capitalize;min-height:44px;transition:background .15s ease,border-color .15s ease}
+.btn-gold{background:linear-gradient(135deg,var(--accent),color-mix(in oklch,var(--accent) 72%,var(--bg)));color:var(--fg);border-color:var(--accent)}
+.btn-gold:hover{background:linear-gradient(135deg,color-mix(in oklch,var(--accent) 88%,var(--fg)),var(--accent))}
+.btn-blue{background:var(--blue);color:var(--bg);border-color:var(--blue)}
+.btn-blue:hover{background:color-mix(in oklch,var(--blue) 86%,var(--fg))}
+.btn-outline{background:var(--bg);color:var(--fg);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--fg)}
+.btn-block{width:100%}
+
+/* hero */
+.hero{padding-block:56px 64px;background:var(--surface)}
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:920px){.hero-split{grid-template-columns:1fr}}
+.hero-img{width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--border)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.booking-bar{margin-top:32px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:12px;align-items:end}
+@media(max-width:920px){.booking-bar{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;font-weight:700;color:var(--fg)}
+.field select,.field input{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--fg);font:inherit;font-size:15px;min-height:44px}
+.field select:hover,.field input:hover{border-color:var(--muted)}
+.field-error{font-size:13px;color:var(--blue);font-weight:700;display:none}
+.field-error.show{display:block}
+
+/* fleet */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg);color:var(--fg);font-size:14px;font-weight:700;min-height:44px}
+.chip:hover{border-color:var(--fg)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.fleet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:1100px){.fleet-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.fleet-grid{grid-template-columns:1fr}}
+.car-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.car-card:hover{border-color:var(--muted);box-shadow:0 8px 24px color-mix(in oklch,var(--fg) 10%,transparent)}
+.car-media{background:var(--bg);border-bottom:1px solid var(--border)}
+.car-media img{width:100%;height:auto;aspect-ratio:1/1;object-fit:contain}
+.car-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.car-cat{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+.car-spec{font-size:14px;color:var(--muted)}
+.car-foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--border);display:flex;align-items:end;justify-content:space-between;gap:12px}
+.price{font-weight:900;font-size:19px}
+.price small{display:block;font-size:12px;font-weight:400;color:var(--muted)}
+.empty{padding:32px;border:1px solid var(--border);border-radius:var(--radius);color:var(--muted);text-align:center;display:none}
+.empty.show{display:block}
+
+/* steps + places */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:920px){.grid-3{grid-template-columns:1fr}}
+.step{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.step-num{font-weight:900;font-size:28px;color:var(--accent);margin-bottom:8px}
+.step p,.place p{color:var(--muted);font-size:15px;margin-top:6px}
+.place{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.place-media img{width:100%;height:auto}
+.place-body{padding:20px}
+.place-tag{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.place-text-only{display:flex;flex-direction:column;justify-content:center}
+
+/* cta + footer */
+.cta-band{background:var(--fg);color:var(--bg);border-radius:var(--radius);padding:40px;text-align:center}
+.cta-band .lead{color:var(--border);margin-inline:auto}
+.cta-band .hero-cta{justify-content:center}
+.pagefoot{background:var(--fg);color:var(--border);padding-block:40px;font-size:14px}
+.pagefoot a{color:var(--bg)}
+.pagefoot a:hover{color:var(--accent)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px}
+@media(max-width:920px){.foot-grid{grid-template-columns:1fr}}
+.foot-grid h3{color:var(--bg);font-size:16px;margin-bottom:12px}
+.foot-grid p,.foot-grid li{color:var(--border)}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+
+/* dialog */
+dialog{border:1px solid var(--border);border-radius:var(--radius);padding:0;max-width:480px;width:calc(100% - 32px);color:var(--fg);background:var(--bg)}
+dialog::backdrop{background:color-mix(in oklch,var(--fg) 55%,transparent)}
+.dialog-body{padding:24px;display:grid;gap:16px}
+.dialog-head{display:flex;justify-content:space-between;align-items:start;gap:16px}
+.icon-btn{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);width:44px;height:44px;font-size:18px;color:var(--fg)}
+.total{display:flex;justify-content:space-between;font-weight:900;font-size:18px;border-top:1px solid var(--border);padding-top:16px}
+.check{display:flex;gap:10px;align-items:center;font-size:15px;font-weight:700}
+.check input{width:20px;height:20px;accent-color:var(--blue)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="topnav" data-od-id="topnav">
+  <div class="container topnav-inner">
+    <a href="#top" aria-label="Golden Mobil Auto"><img class="logo-img" src="assets/logo-gm-w.png" alt="Golden Mobil Auto" width="803" height="100"></a>
+    <nav aria-label="Main">
+      <a href="#fleet" data-en="Fleet" data-id="Armada">Fleet</a>
+      <a href="#how" data-en="How it works" data-id="Cara sewa">How it works</a>
+      <a href="#batam" data-en="Where to go" data-id="Destinasi">Where to go</a>
+      <a href="#contact" data-en="Contact" data-id="Kontak">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-toggle" role="group" aria-label="Language / Bahasa">
+        <button type="button" id="lang-en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-id" aria-pressed="false">ID</button>
+      </div>
+      <a class="btn btn-gold" href="#fleet" data-en="Book now" data-id="Pesan sekarang">Book now</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Hero · Layout 2 split -->
+  <section class="hero" data-od-id="hero">
+    <div class="container">
+      <div class="hero-split">
+        <div>
+          <p class="eyebrow" data-en="Car rental · Batam" data-id="Rental mobil · Batam">Car rental · Batam</p>
+          <h1 data-en="Touring Batam? Just golden-in." data-id="Keliling Batam? Golden-in aja.">Touring Batam? Just golden-in.</h1>
+          <p class="lead" data-en="Rent a car in Batam in one click, with or without a driver. Pick up at the Golden office or directly at the port." data-id="Sewa mobil di Batam cukup satu klik, dengan atau tanpa sopir. Ambil di kantor Golden atau langsung di pelabuhan.">Rent a car in Batam in one click, with or without a driver. Pick up at the Golden office or directly at the port.</p>
+          <div class="hero-cta">
+            <a class="btn btn-gold" href="#fleet" data-en="See the fleet" data-id="Lihat armada">See the fleet</a>
+            <a class="btn btn-blue" href="#batam" data-en="Where to go in Batam" data-id="Destinasi di Batam">Where to go in Batam</a>
+          </div>
+        </div>
+        <img class="hero-img" src="assets/barelang-bridge.jpg" alt="Barelang Bridge, Batam" width="900" height="600">
+      </div>
+      <form class="booking-bar" id="booking-bar" data-od-id="booking-bar" novalidate>
+        <div class="field">
+          <label for="pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label>
+          <select id="pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="port" data-en="At the port (passport ready)" data-id="Di pelabuhan (siapkan paspor)">At the port (passport ready)</option></select>
+        </div>
+        <div class="field">
+          <label for="date" data-en="Rental date" data-id="Tanggal sewa">Rental date</label>
+          <input type="date" id="date" required>
+          <span class="field-error" id="date-error" data-en="Pick a date to continue." data-id="Pilih tanggal untuk lanjut.">Pick a date to continue.</span>
+        </div>
+        <div class="field">
+          <label for="days" data-en="Duration" data-id="Durasi">Duration</label>
+          <select id="days"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+        </div>
+        <button class="btn btn-blue" type="submit" data-en="Find cars" data-id="Cari mobil">Find cars</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Fleet -->
+  <section class="section" id="fleet" data-od-id="fleet">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-en="Golden Fleets" data-id="Armada Golden">Golden Fleets</p>
+        <h2 data-en="Pick the car that fits your trip" data-id="Pilih mobil yang pas untuk perjalananmu">Pick the car that fits your trip</h2>
+        <p class="lead" data-en="Prices are the published “start from” daily rates on goldenmobilauto.com. Every car is available with or without a driver." data-id="Harga adalah tarif harian “mulai dari” yang tertera di goldenmobilauto.com. Semua mobil tersedia dengan atau tanpa sopir.">Prices are the published “start from” daily rates on goldenmobilauto.com. Every car is available with or without a driver.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter fleet"></div>
+      <div class="fleet-grid" id="fleet-grid"></div>
+      <p class="empty" id="fleet-empty" data-en="No cars in this category yet." data-id="Belum ada mobil di kategori ini.">No cars in this category yet.</p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section section--tint" id="how" data-od-id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-en="Easy &amp; hassle-free" data-id="Mudah &amp; tanpa ribet">Easy &amp; hassle-free</p>
+        <h2 data-en="Three steps, then drive" data-id="Tiga langkah, lalu jalan">Three steps, then drive</h2>
+      </div>
+      <div class="grid-3">
+        <article class="step" data-od-id="step-choose"><div class="step-num">1</div><h3 data-en="Choose your car" data-id="Pilih mobilmu">Choose your car</h3><p data-en="Pick a fleet car and your rental date above." data-id="Pilih mobil dan tanggal sewamu di atas.">Pick a fleet car and your rental date above.</p></article>
+        <article class="step" data-od-id="step-pickup"><div class="step-num">2</div><h3 data-en="Pick up where it suits you" data-id="Ambil di lokasi yang pas">Pick up where it suits you</h3><p data-en="At the Golden office in Taman Baloi, or at the port — tourists from Singapore and Malaysia, just bring your passport." data-id="Di kantor Golden di Taman Baloi, atau di pelabuhan — wisatawan dari Singapura dan Malaysia cukup bawa paspor.">At the Golden office in Taman Baloi, or at the port — tourists from Singapore and Malaysia, just bring your passport.</p></article>
+        <article class="step" data-od-id="step-drive"><div class="step-num">3</div><h3 data-en="Drive, with or without a driver" data-id="Jalan, dengan atau tanpa sopir">Drive, with or without a driver</h3><p data-en="Self-drive or sit back with a Golden driver. Return the car at the end of your rental." data-id="Setir sendiri atau santai dengan sopir Golden. Kembalikan mobil di akhir masa sewa.">Self-drive or sit back with a Golden driver. Return the car at the end of your rental.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where to go -->
+  <section class="section" id="batam" data-od-id="where-to-go">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">#ExploreBatam</p>
+        <h2 data-en="Where to go in Batam" data-id="Destinasi di Batam">Where to go in Batam</h2>
+        <p class="lead" data-en="Trending places from Golden’s Batam guide — all an easy drive with your rental." data-id="Tempat yang sedang tren dari panduan Batam Golden — semuanya mudah dijangkau dengan mobil sewaanmu.">Trending places from Golden’s Batam guide — all an easy drive with your rental.</p>
+      </div>
+      <div class="grid-3">
+        <article class="place" data-od-id="place-barelang">
+          <div class="place-media"><img src="assets/barelang-bridge.jpg" alt="Barelang Bridge connecting Batam, Rempang and Galang" width="900" height="600" loading="lazy"></div>
+          <div class="place-body"><span class="place-tag" data-en="Landmark" data-id="Ikon kota">Landmark</span><h3>Barelang Bridge</h3><p data-en="Batam’s signature bridge linking Batam, Rempang and Galang. Stop for the view — best at sunset and after dark." data-id="Jembatan ikonik Batam yang menghubungkan Batam, Rempang, dan Galang. Berhenti untuk menikmati pemandangan — terbaik saat senja dan malam hari.">Batam’s signature bridge linking Batam, Rempang and Galang. Stop for the view — best at sunset and after dark.</p></div>
+        </article>
+        <article class="place place-text-only" data-od-id="place-nagoya"><div class="place-body"><span class="place-tag" data-en="Shopping" data-id="Belanja">Shopping</span><h3>Nagoya Batam</h3><p data-en="Batam’s shopping district for bags, gadgets, perfume and electronics — duty-free prices across the free trade zone." data-id="Kawasan belanja Batam untuk tas, gadget, parfum, dan elektronik — harga bebas pajak di kawasan perdagangan bebas.">Batam’s shopping district for bags, gadgets, perfume and electronics — duty-free prices across the free trade zone.</p></div></article>
+        <article class="place place-text-only" data-od-id="place-ocarina"><div class="place-body"><span class="place-tag" data-en="Family" data-id="Keluarga">Family</span><h3>Ocarina Park</h3><p data-en="A 40-hectare beachfront theme park by the sea — an easy family stop between the city and the coast." data-id="Taman rekreasi tepi pantai seluas 40 hektar — persinggahan keluarga yang mudah antara kota dan pesisir.">A 40-hectare beachfront theme park by the sea — an easy family stop between the city and the coast.</p></div></article>
+        <article class="place place-text-only" data-od-id="place-kepri-coral"><div class="place-body"><span class="place-tag" data-en="Beach &amp; sea" data-id="Pantai &amp; laut">Beach &amp; sea</span><h3>Kepri Coral</h3><p data-en="White sand, coral and an underwater aquarium view — Batam’s newer beach escape." data-id="Pasir putih, karang, dan pemandangan akuarium bawah laut — destinasi pantai baru di Batam.">White sand, coral and an underwater aquarium view — Batam’s newer beach escape.</p></div></article>
+        <article class="place place-text-only" data-od-id="place-mubut"><div class="place-body"><span class="place-tag" data-en="Island" data-id="Pulau">Island</span><h3>Pulau Mubut</h3><p data-en="An uninhabited tropical island for sunset, swimming and white sand. Keep it clean for the next visitors." data-id="Pulau tropis tak berpenghuni untuk menikmati senja, berenang, dan pasir putih. Jaga kebersihannya untuk pengunjung berikutnya.">An uninhabited tropical island for sunset, swimming and white sand. Keep it clean for the next visitors.</p></div></article>
+        <article class="place place-text-only" data-od-id="place-bukit-senyum"><div class="place-body"><span class="place-tag" data-en="Viewpoint" data-id="Titik pandang">Viewpoint</span><h3>Bukit Senyum</h3><p data-en="Hilltop panorama over Batam — and Singapore’s skyline across the water. Go at night for the city lights." data-id="Panorama dari perbukitan Batam — dan cakrawala Singapura di seberang laut. Datang malam hari untuk gemerlap lampu kota.">Hilltop panorama over Batam — and Singapore’s skyline across the water. Go at night for the city lights.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0" data-od-id="cta">
+    <div class="container">
+      <div class="cta-band">
+        <h2 data-en="Ready when you land" data-id="Siap saat kamu tiba">Ready when you land</h2>
+        <p class="lead" data-en="Message Golden Mobil Auto and your car will be waiting — at the office or at the port." data-id="Hubungi Golden Mobil Auto dan mobilmu akan menunggu — di kantor atau di pelabuhan.">Message Golden Mobil Auto and your car will be waiting — at the office or at the port.</p>
+        <div class="hero-cta"><a class="btn btn-gold" href="#fleet" data-en="Book your car" data-id="Pesan mobilmu">Book your car</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pagefoot" id="contact" data-od-id="footer">
+  <div class="container foot-grid">
+    <div>
+      <img class="logo-img" src="assets/logo-gm-w.png" alt="Golden Mobil Auto" width="803" height="100" loading="lazy">
+      <p style="margin-top:16px" data-en="PT Golden Mobil Auto — one-click car rental in Batam, with or without a driver." data-id="PT Golden Mobil Auto — sewa mobil satu klik di Batam, dengan atau tanpa sopir.">PT Golden Mobil Auto — one-click car rental in Batam, with or without a driver.</p>
+    </div>
+    <div>
+      <h3 data-en="Visit" data-id="Kunjungi">Visit</h3>
+      <p>Komplek Limindo Trade Centre Blok A No. 12A, Taman Baloi, Kota Batam, Kepulauan Riau 29444</p>
+      <p style="margin-top:8px"><span data-en="Open" data-id="Buka">Open</span> 09.00 – 17.00</p>
+    </div>
+    <div>
+      <h3 data-en="Contact" data-id="Kontak">Contact</h3>
+      <ul>
+        <li><a href="https://wa.me/628117007717">WhatsApp · +62 811-7007-717</a></li>
+        <li><a href="https://goldenmobilauto.com">goldenmobilauto.com</a></li>
+        <li><a href="https://maps.app.goo.gl/1xrc7Jh5UunUSCbZ6" data-en="Open in Google Maps" data-id="Buka di Google Maps">Open in Google Maps</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<dialog id="book-dialog" aria-labelledby="dialog-title">
+  <form class="dialog-body" id="book-form" method="dialog" novalidate>
+    <div class="dialog-head">
+      <div><p class="eyebrow" data-en="Book this car" data-id="Pesan mobil ini">Book this car</p><h3 id="dialog-title">—</h3></div>
+      <button class="icon-btn" type="button" id="dialog-close" aria-label="Close">×</button>
+    </div>
+    <div class="field"><label for="bk-date" data-en="Rental date" data-id="Tanggal sewa">Rental date</label><input type="date" id="bk-date" required><span class="field-error" id="bk-error" data-en="Add your name and a date to continue." data-id="Isi nama dan tanggal untuk lanjut.">Add your name and a date to continue.</span></div>
+    <div class="field"><label for="bk-days" data-en="Duration (days)" data-id="Durasi (hari)">Duration (days)</label><select id="bk-days"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+    <div class="field"><label for="bk-pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label><select id="bk-pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="port" data-en="At the port" data-id="Di pelabuhan">At the port</option></select></div>
+    <label class="check"><input type="checkbox" id="bk-driver"> <span data-en="Add a driver" data-id="Tambah sopir">Add a driver</span></label>
+    <div class="field"><label for="bk-name" data-en="Your name" data-id="Nama kamu">Your name</label><input type="text" id="bk-name" autocomplete="name" required></div>
+    <div class="total"><span data-en="Estimated total" data-id="Estimasi total">Estimated total</span><span id="bk-total">—</span></div>
+    <button class="btn btn-gold btn-block" type="submit" data-en="Confirm via WhatsApp" data-id="Konfirmasi via WhatsApp">Confirm via WhatsApp</button>
+    <p style="font-size:13px;color:var(--muted)" data-en="No payment here — Golden confirms availability and documents with you on WhatsApp." data-id="Tidak ada pembayaran di sini — Golden akan mengonfirmasi ketersediaan dan dokumen via WhatsApp.">No payment here — Golden confirms availability and documents with you on WhatsApp.</p>
+  </form>
+</dialog>
+
+<script>
+const CARS=[
+ {id:"honda-brio",name:"Honda Brio",img:"assets/honda-brio.webp",cat:"4",price:300000,en:"Compact and fuel-efficient for city trips.",idn:"Kompak dan irit BBM untuk perjalanan dalam kota.",specEn:"4 Seater",specId:"4 Kursi"},
+ {id:"avanza-veloz",name:"Toyota Avanza Veloz",img:"assets/avanza-veloz.webp",cat:"6",price:300000,en:"Family MPV with Manual and CVT options.",idn:"MPV keluarga dengan pilihan Manual dan CVT.",specEn:"6 Seater · Manual / CVT",specId:"6 Kursi · Manual / CVT"},
+ {id:"innova-reborn",name:"Toyota Innova Reborn",img:"assets/toyota-innova-reborn.webp",cat:"6",price:500000,en:"Roomy MPV — 2.0 petrol Dual VVT-i or 2.4 diesel.",idn:"MPV lega — bensin 2.0 Dual VVT-i atau diesel 2.4.",specEn:"6 Seater",specId:"6 Kursi"},
+ {id:"innova-venturer",name:"Toyota Innova Venturer",img:"assets/toyota-innova-venturer.webp",cat:"6",price:600000,en:"The Innova with a more premium cabin.",idn:"Innova dengan kabin yang lebih premium.",specEn:"6 Seater",specId:"6 Kursi"},
+ {id:"innova-zenix",name:"Toyota Innova Zenix",img:"assets/toyota-innova-zenix.webp",cat:"6",price:700000,en:"The newest Innova for family trips.",idn:"Innova terbaru untuk perjalanan keluarga.",specEn:"6 Seater",specId:"6 Kursi"},
+ {id:"fortuner",name:"Toyota Fortuner",img:"assets/toyota-fortuner.webp",cat:"6",price:1100000,en:"2.4 diesel SUV, 6-speed automatic.",idn:"SUV diesel 2.4, otomatis 6 percepatan.",specEn:"6 Seater · SUV",specId:"6 Kursi · SUV"},
+ {id:"hiace",name:"Toyota Hiace",img:"assets/toyota-hiace.webp",cat:"bus",price:1500000,en:"Group van for family and company trips.",idn:"Van rombongan untuk keluarga dan perusahaan.",specEn:"Bus · 11–16 Seater",specId:"Bus · 11–16 Kursi"},
+ {id:"alphard",name:"Toyota Alphard",img:"assets/alphard-2022.webp",cat:"luxury",price:2500000,en:"Luxury MPV for occasions that matter.",idn:"MPV mewah untuk momen istimewa.",specEn:"Luxury Car",specId:"Mobil Mewah"}
+];
+const CATS=[["all","All cars","Semua mobil"],["4","4 Seater","4 Kursi"],["6","6 Seater","6 Kursi"],["luxury","Luxury","Mewah"],["bus","Bus","Bus"]];
+let lang=localStorage.getItem("gm-lang")||"en", filter="all", selected=null;
+const fmt=n=>"Rp "+n.toLocaleString("id-ID");
+const grid=document.getElementById("fleet-grid"), filtersEl=document.getElementById("filters");
+
+function renderFilters(){
+  filtersEl.innerHTML=CATS.map(([v,en,idn])=>`<button type="button" class="chip" data-cat="${v}" aria-pressed="${filter===v}">${lang==="id"?idn:en}</button>`).join("");
+  filtersEl.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.cat;render();}));
+}
+function render(){
+  renderFilters();
+  const list=CARS.filter(c=>filter==="all"||c.cat===filter);
+  document.getElementById("fleet-empty").classList.toggle("show",!list.length);
+  grid.innerHTML=list.map(c=>`
+   <article class="car-card" data-od-id="car-${c.id}">
+     <div class="car-media"><img src="${c.img}" alt="${c.name}" width="800" height="800" loading="lazy"></div>
+     <div class="car-body">
+       <span class="car-cat">${lang==="id"?c.specId:c.specEn}</span>
+       <h3>${c.name}</h3>
+       <p class="car-spec">${lang==="id"?c.idn:c.en}</p>
+       <div class="car-foot">
+         <span class="price">${fmt(c.price)}<small>${lang==="id"?"mulai dari / hari":"start from / day"}</small></span>
+         <button type="button" class="btn btn-blue" data-book="${c.id}">${lang==="id"?"Pesan":"Book"}</button>
+       </div>
+     </div>
+   </article>`).join("");
+  grid.querySelectorAll("[data-book]").forEach(b=>b.addEventListener("click",()=>openBook(b.dataset.book)));
+}
+function applyLang(){
+  document.documentElement.lang=lang==="id"?"id":"en";
+  document.getElementById("lang-en").setAttribute("aria-pressed",lang==="en");
+  document.getElementById("lang-id").setAttribute("aria-pressed",lang==="id");
+  document.querySelectorAll("[data-en]").forEach(el=>{el.textContent=lang==="id"?el.dataset.id:el.dataset.en;});
+  localStorage.setItem("gm-lang",lang); render();
+}
+document.getElementById("lang-en").addEventListener("click",()=>{lang="en";applyLang();});
+document.getElementById("lang-id").addEventListener("click",()=>{lang="id";applyLang();});
+
+/* booking dialog */
+const dlg=document.getElementById("book-dialog");
+function total(){ if(!selected) return; const d=+document.getElementById("bk-days").value; document.getElementById("bk-total").textContent=fmt(selected.price*d); }
+function openBook(id){
+  selected=CARS.find(c=>c.id===id);
+  document.getElementById("dialog-title").textContent=selected.name+" · "+fmt(selected.price)+(lang==="id"?"/hari":"/day");
+  document.getElementById("bk-date").value=document.getElementById("date").value;
+  document.getElementById("bk-days").value=document.getElementById("days").value;
+  document.getElementById("bk-pickup").value=document.getElementById("pickup").value;
+  document.getElementById("bk-error").classList.remove("show"); total(); dlg.showModal();
+}
+["bk-days"].forEach(i=>document.getElementById(i).addEventListener("change",total));
+document.getElementById("dialog-close").addEventListener("click",()=>dlg.close());
+document.getElementById("book-form").addEventListener("submit",e=>{
+  const name=document.getElementById("bk-name").value.trim(), date=document.getElementById("bk-date").value;
+  if(!name||!date){ e.preventDefault(); document.getElementById("bk-error").classList.add("show"); return; }
+  const days=document.getElementById("bk-days").value, pickup=document.getElementById("bk-pickup").value==="port"?(lang==="id"?"Pelabuhan":"Port"):(lang==="id"?"Kantor Golden":"Golden office");
+  const driver=document.getElementById("bk-driver").checked?(lang==="id"?"dengan sopir":"with driver"):(lang==="id"?"lepas kunci":"self-drive");
+  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name}. I would like to rent the ${selected.name} on ${date} for ${days} day(s), pickup: ${pickup}, ${driver}. Estimated total: ${fmt(selected.price*days)}.`);
+  window.open("https://wa.me/628117007717?text="+msg,"_blank");
+});
+document.getElementById("booking-bar").addEventListener("submit",e=>{
+  e.preventDefault();
+  const date=document.getElementById("date");
+  if(!date.value){ document.getElementById("date-error").classList.add("show"); date.focus(); return; }
+  document.getElementById("date-error").classList.remove("show");
+  const y=document.getElementById("fleet").getBoundingClientRect().top+window.scrollY-72; window.scrollTo({top:y,behavior:"smooth"});
+});
+applyLang();
+</script>
+</body>
+</html>
