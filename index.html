@@ -481,7 +481,6 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
       <button class="icon-btn" type="button" id="dialog-close" aria-label="Close">×</button>
     </div>
     <div class="field"><label for="bk-start" data-en="Rental dates (START–END)" data-id="Tanggal sewa (MULAI–SELESAI)">Rental dates (START–END)</label><div class="date-range"><input type="date" id="bk-start" aria-label="Start date" required=""><span aria-hidden="true">–</span><input type="date" id="bk-end" aria-label="End date" required=""></div><span class="field-error" id="bk-error" data-en="Add your name and a START–END date range to continue." data-id="Isi nama dan rentang tanggal MULAI–SELESAI untuk lanjut.">Add your name and a START–END date range to continue.</span></div>
-    <div class="field"><label for="bk-days" data-en="Duration (auto)" data-id="Durasi (otomatis)">Duration (auto)</label><input type="text" id="bk-days" readonly="" value="—"></div>
     <div class="field"><label for="bk-pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label><select id="bk-pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="port" data-en="At the port" data-id="Di pelabuhan">At the port</option></select></div>
     <div class="field"><label for="bk-name" data-en="Your name" data-id="Nama kamu">Your name</label><input type="text" id="bk-name" autocomplete="name" required=""></div>
     <div class="total"><span data-en="Estimated total" data-id="Estimasi total">Estimated total</span><span class="num" id="bk-total">—</span></div>
@@ -586,7 +585,7 @@ function syncRange(){
   s.min=today; if(s.value&&s.value<today) s.value=today;
   e.min=s.value||today; if(e.value&&e.value<e.min) e.value=e.min;
   s.setAttribute("aria-label",lang==="id"?"Tanggal mulai":"Start date"); e.setAttribute("aria-label",lang==="id"?"Tanggal selesai":"End date");
-  const d=rangeDays(); document.getElementById("bk-days").value=d>0?d+" "+(lang==="id"?"hari":"day(s)"):"—"; total();
+  total();
 }
 function openBook(id){
   selected=CARS.find(c=>c.id===id);
