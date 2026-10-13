@@ -169,10 +169,10 @@ h3{font-size:var(--text-lg)}
 .car-slide{flex:0 0 100%;margin:0}
 .car-slide-media{background:var(--surface-warm);border-bottom:1px solid var(--border-soft)}
 .car-slide-media img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain}
-.car-slide-cap{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:var(--space-3) var(--space-4);flex-wrap:wrap}
+.car-slide-cap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:var(--space-3);padding:var(--space-3) var(--space-4);min-height:88px}
 .car-slide-name{font-weight:600;font-size:var(--text-lg);line-height:var(--leading-tight)}
 .car-slide-spec{font-size:var(--text-sm);color:var(--muted)}
-.car-slide-foot{display:flex;align-items:center;gap:var(--space-3)}
+.car-slide-foot{display:flex;align-items:center;gap:var(--space-3);justify-self:end;white-space:nowrap}
 .car-slide-price{font-weight:600}
 .car-slide-price small{display:block;font-weight:400;font-size:var(--text-xs);color:var(--muted)}
 .car-slider-btn{position:absolute;top:34%;width:36px;height:36px;border-radius:var(--radius-pill);border:0;background:var(--surface);color:var(--fg);box-shadow:var(--elev-ring),var(--elev-raised);font-size:20px;line-height:1;display:inline-flex;align-items:center;justify-content:center;z-index:2}
@@ -282,7 +282,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
       <a href="#fleet" data-en="Fleet" data-id="Armada">Fleet</a>
       <a href="#promo" data-en="Promo" data-id="Promo">Promo</a>
       <a href="#how" data-en="How it works" data-id="Cara sewa">How it works</a>
-      <a href="#batam" data-en="Where to go" data-id="Destinasi">Where to go</a>
+      <a href="where-to-go.html" data-en="Where to go" data-id="Destinasi">Where to go</a>
       <a href="#contact" data-en="Contact" data-id="Kontak">Contact</a>
     </nav>
     <div class="header-actions">
@@ -290,7 +290,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
         <button type="button" id="lang-en" aria-pressed="true">EN</button>
         <button type="button" id="lang-id" aria-pressed="false">ID</button>
       </div>
-      <a class="btn" href="#fleet" data-en="Book now" data-id="Pesan sekarang">Book now</a>
+      <a class="btn" href="#fleet" data-en="Book" data-id="Pesan">Book</a>
     </div>
   </div>
 </header>
@@ -305,32 +305,16 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
           <p class="lead" data-en="Rent a car in Batam in one click, with or without a driver. Pick up at the Golden office or directly at the port." data-id="Sewa mobil di Batam cukup satu klik, dengan atau tanpa sopir. Ambil di kantor Golden atau langsung di pelabuhan.">Rent a car in Batam in one click, with or without a driver. Pick up at the Golden office or directly at the port.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#fleet" data-en="See the fleet" data-id="Lihat armada">See the fleet</a>
-            <a class="btn" style="background:#cbbd5a;color:#0b0a32;box-shadow:none;font-weight:600" href="#batam" data-en="Where to go in Batam" data-id="Destinasi di Batam">Where to go in Batam</a>
+            <a class="btn" style="background:#cbbd5a;color:#0b0a32;box-shadow:none;font-weight:600" href="where-to-go.html" data-en="Where to go in Batam" data-id="Destinasi di Batam">Where to go in Batam</a>
           </div>
         </div>
         <div class="car-slider" id="car-slider" data-od-id="hero-car-slider" role="region" aria-roledescription="carousel" aria-label="Golden Fleets cars">
           <div class="car-slider-viewport"><div class="car-slider-track" id="car-slider-track"></div></div>
-          <button type="button" class="car-slider-btn car-slider-prev" id="car-slider-prev" aria-label="Previous car">&lsaquo;</button>
-          <button type="button" class="car-slider-btn car-slider-next" id="car-slider-next" aria-label="Next car">&rsaquo;</button>
+          <button type="button" class="car-slider-btn car-slider-prev" id="car-slider-prev" aria-label="Previous car">‹</button>
+          <button type="button" class="car-slider-btn car-slider-next" id="car-slider-next" aria-label="Next car">›</button>
           <div class="car-slider-bar"><div class="car-slider-dots" id="car-slider-dots"></div><span class="car-slider-count num" id="car-slider-count"></span></div>
         </div>
       </div>
-      <form class="booking-bar panel" id="booking-bar" data-od-id="booking-bar" novalidate="">
-        <div class="field">
-          <label for="pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label>
-          <select id="pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="port" data-en="At the port (passport ready)" data-id="Di pelabuhan (siapkan paspor)">At the port (passport ready)</option></select>
-        </div>
-        <div class="field">
-          <label for="date" data-en="Rental date" data-id="Tanggal sewa">Rental date</label>
-          <input type="date" id="date" required="">
-          <span class="field-error" id="date-error" data-en="Pick a date to continue." data-id="Pilih tanggal untuk lanjut.">Pick a date to continue.</span>
-        </div>
-        <div class="field">
-          <label for="days" data-en="Duration" data-id="Durasi">Duration</label>
-          <select id="days"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
-        </div>
-        <button class="btn" type="submit" data-en="Find cars" data-id="Cari mobil">Find cars</button>
-      </form>
     </div>
   </section>
 
@@ -352,28 +336,28 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
     <div class="container">
       <div class="section-head">
         <p class="eyebrow" data-en="Golden Promo" data-id="Promo Golden">Golden Promo</p>
-        <h2 data-en="Current offers" data-id="Penawaran saat ini">Current offers</h2>
-        <p class="lead" data-en="Golden publishes “start from” daily rates — no promo codes, no surprises. Golden confirms your final price on WhatsApp before you pay anything." data-id="Golden menerbitkan tarif harian “mulai dari” — tanpa kode promo, tanpa kejutan. Golden mengonfirmasi harga finalmu via WhatsApp sebelum kamu membayar apa pun.">Golden publishes “start from” daily rates — no promo codes, no surprises. Golden confirms your final price on WhatsApp before you pay anything.</p>
+        <h2 data-en="No Hassle" data-id="Tanpa Ribet">No Hassle</h2>
+        <p class="lead" data-en="Pick a car, pick your dates, and you’re set — no promo codes, no hidden extras, no queues. We confirm the final price on WhatsApp before you pay, and your car is ready at the office, ferry port or airport." data-id="Pilih mobil, pilih tanggal, beres — tanpa kode promo, tanpa biaya tersembunyi, tanpa antre. Kami konfirmasi harga final via WhatsApp sebelum Anda membayar, dan mobil siap di kantor, pelabuhan feri, atau bandara.">Pick a car, pick your dates, and you’re set — no promo codes, no hidden extras, no queues. We confirm the final price on WhatsApp before you pay, and your car is ready at the office, ferry port or airport.</p>
       </div>
       <div class="grid-3">
         <article class="step panel panel-pad" data-od-id="promo-city">
           <span class="place-tag" data-en="City cars" data-id="Mobil kota">City cars</span>
           <h3 data-en="From Rp 300.000/day" data-id="Mulai Rp 300.000/hari">From Rp 300.000/day</h3>
           <p data-en="Honda Brio and Toyota Avanza Veloz — the lowest published rates in the fleet, ideal for city trips." data-id="Honda Brio dan Toyota Avanza Veloz — tarif terendah yang diterbitkan di armada, pas untuk perjalanan dalam kota.">Honda Brio and Toyota Avanza Veloz — the lowest published rates in the fleet, ideal for city trips.</p>
-          <p style="margin-top:16px"><button type="button" class="btn btn-gold" data-promo-book="honda-brio" data-en="Book this offer" data-id="Pesan penawaran ini">Book this offer</button></p>
         </article>
         <article class="step panel panel-pad" data-od-id="promo-family">
           <span class="place-tag" data-en="Family MPVs" data-id="MPV keluarga">Family MPVs</span>
           <h3 data-en="Innova from Rp 500.000/day" data-id="Innova mulai Rp 500.000/hari">Innova from Rp 500.000/day</h3>
           <p data-en="Innova Reborn, Venturer and Zenix — roomy 6-seaters for family trips across Batam, with or without a driver." data-id="Innova Reborn, Venturer, dan Zenix — 6 kursi lega untuk perjalanan keluarga keliling Batam, dengan atau tanpa sopir.">Innova Reborn, Venturer and Zenix — roomy 6-seaters for family trips across Batam, with or without a driver.</p>
-          <p style="margin-top:16px"><button type="button" class="btn btn-gold" data-promo-book="innova-reborn" data-en="Book this offer" data-id="Pesan penawaran ini">Book this offer</button></p>
         </article>
         <article class="step panel panel-pad" data-od-id="promo-port">
           <span class="place-tag" data-en="Port pickup" data-id="Jemput di pelabuhan">Port pickup</span>
           <h3 data-en="Car waiting at the port" data-id="Mobil menunggu di pelabuhan">Car waiting at the port</h3>
           <p data-en="Arriving from Singapore or Malaysia? Your car meets you at the port — just bring your passport." data-id="Tiba dari Singapura atau Malaysia? Mobilmu menunggu di pelabuhan — cukup bawa paspor.">Arriving from Singapore or Malaysia? Your car meets you at the port — just bring your passport.</p>
-          <p style="margin-top:16px"><a class="btn btn-blue" href="#fleet" data-en="Choose your car" data-id="Pilih mobilmu">Choose your car</a></p>
         </article>
+      </div>
+      <div data-od-id="promo-cta" style="margin-top:24px;display:flex;justify-content:center">
+        <a class="btn btn-primary" href="#fleet" data-en="Choose your car and book" data-id="Pilih mobil dan pesan">Choose your car and book</a>
       </div>
     </div>
   </section>
@@ -393,35 +377,14 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
     </div>
   </section>
 
-  <section class="section" id="batam" data-od-id="where-to-go" style="padding-top:0">
+  <section class="section" id="batam-teaser" data-od-id="where-to-go-teaser" style="padding-top:0">
     <div class="container">
-      <div class="section-head">
+      <div class="cta-band panel">
         <p class="eyebrow">#ExploreBatam</p>
         <h2 data-en="Where to go in Batam" data-id="Destinasi di Batam">Where to go in Batam</h2>
-        <p class="lead" data-en="Trending places from Golden’s Batam guide — all an easy drive with your rental." data-id="Tempat yang sedang tren dari panduan Batam Golden — semuanya mudah dijangkau dengan mobil sewaanmu.">Trending places from Golden’s Batam guide — all an easy drive with your rental.</p>
+        <p class="lead" data-en="6 trending spots — Barelang Bridge, Nagoya Food Court, Grand Batam and more — now on their own guide page with photos." data-id="6 tempat tren — Barelang Bridge, Nagoya Food Court, Grand Batam, dan lainnya — kini di halaman panduan sendiri beserta fotonya.">6 trending spots — Barelang Bridge, Nagoya Food Court, Grand Batam and more — now on their own guide page with photos.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="where-to-go.html" data-en="Explore the guide" data-id="Lihat panduannya">Explore the guide</a></div>
       </div>
-      <div class="grid-3">
-        <article class="place panel" data-od-id="place-barelang">
-          <div class="place-media"><img src="assets/barelang-bridge.jpg" alt="Barelang Bridge connecting Batam, Rempang and Galang" width="900" height="600" loading="lazy"></div>
-          <div class="place-body"><span class="place-tag" data-en="Landmark" data-id="Ikon kota">Landmark</span><h3>Barelang Bridge</h3><p data-en="Batam’s signature bridge linking Batam, Rempang and Galang. Stop for the view — best at sunset and after dark." data-id="Jembatan ikonik Batam yang menghubungkan Batam, Rempang, dan Galang. Berhenti untuk menikmati pemandangan — terbaik saat senja dan malam hari.">Batam’s signature bridge linking Batam, Rempang and Galang. Stop for the view — best at sunset and after dark.</p></div>
-        </article>
-        <article class="place panel" data-od-id="place-nagoya">
-          <div class="place-media"><img src="assets/nagoya-hill.jpg" alt="Nagoya Food Court dining hall, Batam" width="1600" height="1064" loading="lazy"></div>
-          <div class="place-body"><span class="place-tag" data-en="Food" data-id="Kuliner">Food</span><h3>Nagoya Food Court</h3><p data-en="Batam’s food-court stop in Nagoya for local eats — pick a stall and eat like a local." data-id="Destinasi food court di Nagoya untuk kuliner lokal — pilih gerainya dan makan seperti warga lokal.">Batam’s food-court stop in Nagoya for local eats — pick a stall and eat like a local.</p></div></article>
-        <article class="place panel" data-od-id="place-grand-batam">
-          <div class="place-media"><img src="assets/grand-batam.jpg" alt="Multi-level atrium inside Grand Batam Mall, Batam" width="1600" height="1200" loading="lazy"></div>
-          <div class="place-body"><span class="place-tag" data-en="Shopping" data-id="Belanja">Shopping</span><h3>Grand Batam</h3><p data-en="Batam’s big mall day out in Nagoya — shops, food and a movie, all under one roof." data-id="Mal besar untuk jalan-jalan di Nagoya — belanja, kuliner, dan nonton, semuanya di satu tempat.">Batam’s big mall day out in Nagoya — shops, food and a movie, all under one roof.</p></div></article>
-        <article class="place panel" data-od-id="place-ocarina">
-          <div class="place-media"><img src="assets/ocarina-park.jpg" alt="Ferris wheel and seafront at Ocarina Park, Batam" width="1200" height="675" loading="lazy"></div>
-          <div class="place-body"><span class="place-tag" data-en="Family" data-id="Keluarga">Family</span><h3>Ocarina Park</h3><p data-en="A 40-hectare beachfront theme park by the sea — an easy family stop between the city and the coast." data-id="Taman rekreasi tepi pantai seluas 40 hektar — persinggahan keluarga yang mudah antara kota dan pesisir.">A 40-hectare beachfront theme park by the sea — an easy family stop between the city and the coast.</p></div></article>
-        <article class="place panel" data-od-id="place-kepri-coral">
-          <div class="place-media"><img src="assets/kepri-coral.jpg" alt="Kepri Coral floating restaurant at sunset, Pengalap Island, Batam" width="1000" height="667" loading="lazy"></div>
-          <div class="place-body"><span class="place-tag" data-en="Beach and sea" data-id="Pantai dan laut">Beach and sea</span><h3>Kepri Coral</h3><p data-en="White sand, coral and an underwater aquarium view — Batam’s newer beach escape." data-id="Pasir putih, karang, dan pemandangan akuarium bawah laut — destinasi pantai baru di Batam.">White sand, coral and an underwater aquarium view — Batam’s newer beach escape.</p></div></article>
-        <article class="place panel" data-od-id="place-montigo">
-          <div class="place-media"><img src="assets/montigo-resort.jpg" alt="Infinity pool at a Montigo Resorts Nongsa villa overlooking the Singapore Strait toward Singapore, Batam" width="1400" height="1048" loading="lazy"></div>
-          <div class="place-body"><span class="place-tag" data-en="Resort" data-id="Resor">Resort</span><h3>Montigo Resort</h3><p data-en="Float in the infinity pool with Singapore on the horizon — then retreat to your villa’s own private plunge pool above the sea in Nongsa." data-id="Mengapung di infinity pool dengan Singapura di cakrawala — lalu santai di kolam plunge pribadi vila Anda menghadap laut di Nongsa.">Float in the infinity pool with Singapore on the horizon — then retreat to your villa’s own private plunge pool above the sea in Nongsa.</p></div></article>
-      </div>
-      <p class="place-credits" data-en="Photos: Nagoya Food Court by Jpatokal via Wikimedia Commons (CC BY-SA 4.0); Grand Batam by Sharon Hahn Darlin via Wikimedia Commons (CC BY 2.0); Ocarina Park by The Travel Intern; Kepri Coral by TheSmartLocal; Montigo Resort by Girl Eat World; other Batam location photos from local travel sources." data-id="Foto: Nagoya Food Court oleh Jpatokal via Wikimedia Commons (CC BY-SA 4.0); Grand Batam oleh Sharon Hahn Darlin via Wikimedia Commons (CC BY 2.0); Ocarina Park oleh The Travel Intern; Kepri Coral oleh TheSmartLocal; Montigo Resort oleh Girl Eat World; foto lokasi Batam lainnya dari sumber wisata lokal.">Photos: Nagoya Food Court by Jpatokal via Wikimedia Commons (CC BY-SA 4.0); Grand Batam by Sharon Hahn Darlin via Wikimedia Commons (CC BY 2.0); Ocarina Park by The Travel Intern; Kepri Coral by TheSmartLocal; Montigo Resort by Girl Eat World; other Batam location photos from local travel sources.</p>
     </div>
   </section>
 
@@ -448,9 +411,9 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
           <p class="foot-hours"><span data-en="Open daily" data-id="Buka setiap hari">Open daily</span> · 09.00 – 17.00 WIB</p>
         </div>
         <div class="foot-actions">
-          <a class="btn btn-primary foot-wa" style="background:#25D366;color:#0b141a;box-shadow:none" href="https://wa.me/628117007717?text=Hello%20Golden%20Mobil%20Auto%2C%20I%20would%20like%20to%20rent%20a%20car%20in%20Batam." target="_blank" rel="noopener" aria-label="Chat on WhatsApp: +62 811-7007-717"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg><span data-en="Chat on WhatsApp" data-id="Chat via WhatsApp">Chat on WhatsApp</span></a>
-          <a class="btn" href="https://www.instagram.com/goldenmobilauto/" target="_blank" rel="noopener" aria-label="Golden Mobil Auto on Instagram: @goldenmobilauto"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>@goldenmobilauto</span></a>
-          <a class="btn" href="tel:+628117007717" aria-label="Call Golden Mobil Auto: +62 811-7007-717"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span>+62 811-7007-717</span></a>
+          <a class="btn btn-primary foot-wa" style="background:#25D366;color:#0b141a;box-shadow:none;min-height:44px" href="https://wa.me/628117007717?text=Hello%20Golden%20Mobil%20Auto%2C%20I%20would%20like%20to%20rent%20a%20car%20in%20Batam." target="_blank" rel="noopener" aria-label="Chat on WhatsApp: +62 811-7007-717"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg><span data-en="Chat on WhatsApp" data-id="Chat via WhatsApp">Chat on WhatsApp</span></a>
+          <a class="btn" id="ig-link" style="min-height:44px" href="https://www.instagram.com/goldenmobilauto/" target="_blank" rel="noopener" aria-label="Golden Mobil Auto on Instagram: @goldenmobilauto"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg><span>@goldenmobilauto</span></a>
+          <a class="btn" style="min-height:44px" href="tel:+628117007717" aria-label="Call Golden Mobil Auto: +62 811-7007-717"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg><span>+62 811-7007-717</span></a>
         </div>
         <div class="foot-links">
           <a href="https://goldenmobilauto.com" target="_blank" rel="noopener">goldenmobilauto.com</a>
@@ -458,7 +421,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
         </div>
       </div>
       <div class="foot-map panel">
-        <iframe title="Google Maps — Golden Mobil Auto, Komplek Limindo Trade Centre Blok A No. 12A, Taman Baloi, Batam" src="https://www.google.com/maps?q=Golden%20Mobil%20Auto%2C%20Komplek%20Limindo%20Trade%20Centre%20Blok%20A%20No.%2012A%2C%20Taman%20Baloi%2C%20Kota%20Batam%2C%20Kepulauan%20Riau%2029444&amp;z=16&amp;output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe title="Google Maps — Golden Mobil Auto, Komplek Limindo Trade Centre Blok A No. 12A, Taman Baloi, Batam" src="https://www.google.com/maps?q=Golden%20Mobil%20Auto%2C%20Komplek%20Limindo%20Trade%20Centre%20Blok%20A%20No.%2012A%2C%20Taman%20Baloi%2C%20Kota%20Batam%2C%20Kepulauan%20Riau%2029444&amp;z=16&amp;output=embed" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <div class="foot-map-bar">
           <span data-en="Golden Mobil Auto · Taman Baloi, Batam" data-id="Golden Mobil Auto · Taman Baloi, Batam">Golden Mobil Auto · Taman Baloi, Batam</span>
           <a class="foot-map-link" href="https://maps.app.goo.gl/1xrc7Jh5UunUSCbZ6" target="_blank" rel="noopener"><span data-en="Open in Google Maps" data-id="Buka di Google Maps">Open in Google Maps</span> ↗</a>
@@ -470,7 +433,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
       <nav aria-label="Footer">
         <a href="#fleet" data-en="Fleet" data-id="Armada">Fleet</a>
         <a href="#promo" data-en="Promo" data-id="Promo">Promo</a>
-        <a href="#batam" data-en="Where to go" data-id="Destinasi">Where to go</a>
+        <a href="where-to-go.html" data-en="Where to go" data-id="Destinasi">Where to go</a>
         <a href="#top" data-en="Back to top" data-id="Ke atas">Back to top</a>
       </nav>
     </div>
@@ -580,7 +543,6 @@ document.getElementById("lang-id").addEventListener("click",()=>{lang="id";apply
 /* booking dialog */
 const dlg=document.getElementById("book-dialog");
 const DAY=86400000, fmtDay=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"), todayStr=()=>fmtDay(new Date());
-const addDays=(v,n)=>{const d=new Date(v+"T00:00:00");d.setDate(d.getDate()+n);return fmtDay(d);};
 function rangeDays(){ const s=document.getElementById("bk-start").value,e=document.getElementById("bk-end").value; if(!s||!e) return 0; return Math.round((new Date(e)-new Date(s))/DAY)+1; }
 function total(){ if(!selected) return; const d=rangeDays(); document.getElementById("bk-total").textContent=d>0?fmt(selected.price*d):"—"; }
 function syncRange(){
@@ -593,10 +555,9 @@ function syncRange(){
 function openBook(id){
   selected=CARS.find(c=>c.id===id);
   document.getElementById("dialog-title").textContent=selected.name+" · "+fmt(selected.price)+(lang==="id"?"/hari":"/day");
-  const barDate=document.getElementById("date").value, start=barDate&&barDate>=todayStr()?barDate:todayStr();
+  const start=todayStr();
   document.getElementById("bk-start").value=start;
-  document.getElementById("bk-end").value=addDays(start,(+document.getElementById("days").value||1)-1);
-  document.getElementById("bk-pickup").value=document.getElementById("pickup").value==="port"?"ferry-batam-centre":"office";
+  document.getElementById("bk-end").value=start;
   document.getElementById("bk-error").classList.remove("show"); syncRange(); dlg.showModal();
 }
 ["bk-start","bk-end"].forEach(i=>document.getElementById(i).addEventListener("change",syncRange));
@@ -609,16 +570,17 @@ document.getElementById("book-form").addEventListener("submit",e=>{
   const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name}. I would like to rent the ${selected.name} from ${start} to ${end} (${days} day(s)), pickup: ${pickup}. Estimated total: ${fmt(selected.price*days)}.`);
   window.open("https://wa.me/628117007717?text="+msg,"_blank");
 });
-document.getElementById("booking-bar").addEventListener("submit",e=>{
-  e.preventDefault();
-  const date=document.getElementById("date");
-  if(!date.value){ document.getElementById("date-error").classList.add("show"); date.setAttribute("aria-invalid","true"); date.focus(); return; }
-  date.removeAttribute("aria-invalid");
-  document.getElementById("date-error").classList.remove("show");
-  const y=document.getElementById("fleet").getBoundingClientRect().top+window.scrollY-72; window.scrollTo({top:y,behavior:"smooth"});
-});
 applyLang();
 localStorage.removeItem("gm-mode");
+/* IG: open IG app on mobile, fall back to web profile */
+document.getElementById("ig-link").addEventListener("click",e=>{
+  if(!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) return;
+  e.preventDefault();
+  const web="https://www.instagram.com/goldenmobilauto/";
+  const t=setTimeout(()=>window.open(web,"_blank"),800);
+  document.addEventListener("visibilitychange",()=>clearTimeout(t),{once:true});
+  window.location.href="instagram://user?username=goldenmobilauto";
+});
 </script>
 
 
