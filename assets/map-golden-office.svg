@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Map showing Golden Mobil Auto at Taman Baloi, Batam">
+  <rect width="800" height="500" fill="#E9EDF3"/>
+  <!-- sea -->
+  <path d="M0 0H800V110C650 125 550 100 430 118 300 138 150 120 0 135Z" fill="#C7D8EC"/>
+  <text x="24" y="60" font-family="Inter,Arial,sans-serif" font-size="22" fill="#5B7BA6">Baloi Sea</text>
+  <!-- park -->
+  <rect x="560" y="200" width="180" height="130" rx="14" fill="#D8E6D2"/>
+  <text x="580" y="268" font-family="Inter,Arial,sans-serif" font-size="20" fill="#6E8B67">Taman Baloi</text>
+  <!-- city blocks -->
+  <g fill="#F5F7FA" stroke="#D5DBE5" stroke-width="2">
+    <rect x="30" y="160" width="180" height="120" rx="8"/>
+    <rect x="230" y="160" width="150" height="120" rx="8"/>
+    <rect x="400" y="160" width="130" height="120" rx="8"/>
+    <rect x="30" y="300" width="180" height="150" rx="8"/>
+    <rect x="230" y="300" width="300" height="150" rx="8"/>
+    <rect x="560" y="350" width="180" height="100" rx="8"/>
+  </g>
+  <!-- minor roads -->
+  <g stroke="#FFFFFF" stroke-width="14" stroke-linecap="round">
+    <line x1="220" y1="140" x2="220" y2="470"/>
+    <line x1="390" y1="140" x2="390" y2="470"/>
+    <line x1="550" y1="140" x2="550" y2="470"/>
+    <line x1="20" y1="290" x2="760" y2="290"/>
+  </g>
+  <!-- main road -->
+  <line x1="20" y1="380" x2="760" y2="380" stroke="#FFFFFF" stroke-width="26" stroke-linecap="round"/>
+  <line x1="20" y1="380" x2="760" y2="380" stroke="#F3C84B" stroke-width="3" stroke-dasharray="18 14"/>
+  <text x="40" y="368" font-family="Inter,Arial,sans-serif" font-size="17" fill="#8A93A6">Jl. Taman Baloi</text>
+  <!-- office block highlight -->
+  <rect x="230" y="300" width="300" height="150" rx="8" fill="none" stroke="#0B0A32" stroke-width="3"/>
+  <!-- pin -->
+  <g transform="translate(380,275)">
+    <ellipse cx="0" cy="46" rx="26" ry="8" fill="#0B0A32" opacity="0.18"/>
+    <path d="M0 44C-24 12 -32 2 -32 -14A32 32 0 1 1 32 -14C32 2 24 12 0 44Z" fill="#0B0A32"/>
+    <circle cx="0" cy="-14" r="13" fill="#CBBD5A"/>
+    <text x="0" y="-6" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#0B0A32">G</text>
+  </g>
+  <!-- label chip -->
+  <g transform="translate(380,340)">
+    <rect x="-170" y="-24" width="340" height="48" rx="24" fill="#0B0A32"/>
+    <text x="0" y="6" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="21" font-weight="600" fill="#FFFFFF">Golden Mobil Auto · Taman Baloi</text>
+  </g>
+  <text x="24" y="482" font-family="Inter,Arial,sans-serif" font-size="15" fill="#8A93A6">Illustrated map — tap to open live Google Maps</text>
+</svg>
