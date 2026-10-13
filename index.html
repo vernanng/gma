@@ -263,6 +263,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
     <a class="logo-wrap" href="#top" aria-label="Golden Mobil Auto"><img class="logo-img" src="assets/logo-gm-w.png" alt="Golden Mobil Auto" width="803" height="100"></a>
     <nav aria-label="Main">
       <a href="#fleet" data-en="Fleet" data-id="Armada">Fleet</a>
+      <a href="#promo" data-en="Promo" data-id="Promo">Promo</a>
       <a href="#how" data-en="How it works" data-id="Cara sewa">How it works</a>
       <a href="#batam" data-en="Where to go" data-id="Destinasi">Where to go</a>
       <a href="#contact" data-en="Contact" data-id="Kontak">Contact</a>
@@ -325,6 +326,38 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
     </div>
   </section>
 
+  <!-- Golden Promo -->
+  <section class="section" id="promo" data-od-id="golden-promo" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-en="Golden Promo" data-id="Promo Golden">Golden Promo</p>
+        <h2 data-en="Current offers" data-id="Penawaran saat ini">Current offers</h2>
+        <p class="lead" data-en="Golden publishes “start from” daily rates — no promo codes, no surprises. Golden confirms your final price on WhatsApp before you pay anything." data-id="Golden menerbitkan tarif harian “mulai dari” — tanpa kode promo, tanpa kejutan. Golden mengonfirmasi harga finalmu via WhatsApp sebelum kamu membayar apa pun.">Golden publishes “start from” daily rates — no promo codes, no surprises. Golden confirms your final price on WhatsApp before you pay anything.</p>
+      </div>
+      <div class="grid-3">
+        <article class="step panel panel-pad" data-od-id="promo-city">
+          <span class="place-tag" data-en="City cars" data-id="Mobil kota">City cars</span>
+          <h3 data-en="From Rp 300.000/day" data-id="Mulai Rp 300.000/hari">From Rp 300.000/day</h3>
+          <p data-en="Honda Brio and Toyota Avanza Veloz — the lowest published rates in the fleet, ideal for city trips." data-id="Honda Brio dan Toyota Avanza Veloz — tarif terendah yang diterbitkan di armada, pas untuk perjalanan dalam kota.">Honda Brio and Toyota Avanza Veloz — the lowest published rates in the fleet, ideal for city trips.</p>
+          <p style="margin-top:16px"><button type="button" class="btn btn-gold" data-promo-book="honda-brio" data-en="Book this offer" data-id="Pesan penawaran ini">Book this offer</button></p>
+        </article>
+        <article class="step panel panel-pad" data-od-id="promo-family">
+          <span class="place-tag" data-en="Family MPVs" data-id="MPV keluarga">Family MPVs</span>
+          <h3 data-en="Innova from Rp 500.000/day" data-id="Innova mulai Rp 500.000/hari">Innova from Rp 500.000/day</h3>
+          <p data-en="Innova Reborn, Venturer and Zenix — roomy 6-seaters for family trips across Batam, with or without a driver." data-id="Innova Reborn, Venturer, dan Zenix — 6 kursi lega untuk perjalanan keluarga keliling Batam, dengan atau tanpa sopir.">Innova Reborn, Venturer and Zenix — roomy 6-seaters for family trips across Batam, with or without a driver.</p>
+          <p style="margin-top:16px"><button type="button" class="btn btn-gold" data-promo-book="innova-reborn" data-en="Book this offer" data-id="Pesan penawaran ini">Book this offer</button></p>
+        </article>
+        <article class="step panel panel-pad" data-od-id="promo-port">
+          <span class="place-tag" data-en="Port pickup" data-id="Jemput di pelabuhan">Port pickup</span>
+          <h3 data-en="Car waiting at the port" data-id="Mobil menunggu di pelabuhan">Car waiting at the port</h3>
+          <p data-en="Arriving from Singapore or Malaysia? Your car meets you at the port — just bring your passport." data-id="Tiba dari Singapura atau Malaysia? Mobilmu menunggu di pelabuhan — cukup bawa paspor.">Arriving from Singapore or Malaysia? Your car meets you at the port — just bring your passport.</p>
+          <p style="margin-top:16px"><a class="btn btn-blue" href="#fleet" data-en="Choose your car" data-id="Pilih mobilmu">Choose your car</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
   <section class="section" id="how" data-od-id="how-it-works" style="padding-top:0">
     <div class="container">
       <div class="section-head">
@@ -480,6 +513,7 @@ function openBook(id){
   document.getElementById("bk-error").classList.remove("show"); total(); dlg.showModal();
 }
 ["bk-days"].forEach(i=>document.getElementById(i).addEventListener("change",total));
+document.querySelectorAll("[data-promo-book]").forEach(b=>b.addEventListener("click",()=>openBook(b.dataset.promoBook)));
 document.getElementById("dialog-close").addEventListener("click",()=>dlg.close());
 document.getElementById("book-form").addEventListener("submit",e=>{
   const name=document.getElementById("bk-name").value.trim(), date=document.getElementById("bk-date").value;
