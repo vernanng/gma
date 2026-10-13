@@ -481,7 +481,6 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
     <div class="field"><label for="bk-date" data-en="Rental date" data-id="Tanggal sewa">Rental date</label><input type="date" id="bk-date" required=""><span class="field-error" id="bk-error" data-en="Add your name and a date to continue." data-id="Isi nama dan tanggal untuk lanjut.">Add your name and a date to continue.</span></div>
     <div class="field"><label for="bk-days" data-en="Duration (days)" data-id="Durasi (hari)">Duration (days)</label><select id="bk-days"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
     <div class="field"><label for="bk-pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label><select id="bk-pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="port" data-en="At the port" data-id="Di pelabuhan">At the port</option></select></div>
-    <label class="check"><input type="checkbox" id="bk-driver"> <span data-en="Add a driver" data-id="Tambah sopir">Add a driver</span></label>
     <div class="field"><label for="bk-name" data-en="Your name" data-id="Nama kamu">Your name</label><input type="text" id="bk-name" autocomplete="name" required=""></div>
     <div class="total"><span data-en="Estimated total" data-id="Estimasi total">Estimated total</span><span class="num" id="bk-total">—</span></div>
     <button class="btn btn-primary btn-block" type="submit" data-en="Confirm via WhatsApp" data-id="Konfirmasi via WhatsApp">Confirm via WhatsApp</button>
@@ -592,8 +591,7 @@ document.getElementById("book-form").addEventListener("submit",e=>{
   const name=document.getElementById("bk-name").value.trim(), date=document.getElementById("bk-date").value;
   if(!name||!date){ e.preventDefault(); document.getElementById("bk-error").classList.add("show"); return; }
   const days=document.getElementById("bk-days").value, pickup=document.getElementById("bk-pickup").value==="port"?(lang==="id"?"Pelabuhan":"Port"):(lang==="id"?"Kantor Golden":"Golden office");
-  const driver=document.getElementById("bk-driver").checked?(lang==="id"?"dengan sopir":"with driver"):(lang==="id"?"lepas kunci":"self-drive");
-  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name}. I would like to rent the ${selected.name} on ${date} for ${days} day(s), pickup: ${pickup}, ${driver}. Estimated total: ${fmt(selected.price*days)}.`);
+  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name}. I would like to rent the ${selected.name} on ${date} for ${days} day(s), pickup: ${pickup}. Estimated total: ${fmt(selected.price*days)}.`);
   window.open("https://wa.me/628117007717?text="+msg,"_blank");
 });
 document.getElementById("booking-bar").addEventListener("submit",e=>{
