@@ -7,22 +7,34 @@
 <meta name="author" content="Golden Mobil Auto">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0b0a32">
-<link rel="canonical" href="https://goldenmobilauto.com/">
+<link rel="canonical" href="https://vernanng.github.io/golden-mobil-auto/">
+<link rel="alternate" hreflang="en" href="https://vernanng.github.io/golden-mobil-auto/">
+<link rel="alternate" hreflang="id" href="https://vernanng.github.io/golden-mobil-auto/id/">
+<link rel="alternate" hreflang="x-default" href="https://vernanng.github.io/golden-mobil-auto/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Golden Mobil Auto">
 <meta property="og:title" content="Car Rental in Batam — Golden Mobil Auto">
 <meta property="og:description" content="Rent a car in Batam from Rp 300.000/day — GPS and insurance included. Pickup at the office, ferry ports or the airport.">
-<meta property="og:url" content="https://goldenmobilauto.com/">
-<meta property="og:image" content="https://goldenmobilauto.com/assets/barelang-bridge.jpg">
+<meta property="og:url" content="https://vernanng.github.io/golden-mobil-auto/">
+<meta property="og:image" content="https://vernanng.github.io/golden-mobil-auto/assets/barelang-bridge.jpg">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="id_ID">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Car Rental in Batam — Golden Mobil Auto">
 <meta name="twitter:description" content="Sewa mobil di Batam from Rp 300.000/day — GPS and insurance included. Book via WhatsApp.">
-<meta name="twitter:image" content="https://goldenmobilauto.com/assets/barelang-bridge.jpg">
+<meta name="twitter:image" content="https://vernanng.github.io/golden-mobil-auto/assets/barelang-bridge.jpg">
 <link rel="alternate" type="text/plain" title="Site summary for AI assistants" href="llms.txt">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"AutoRental","name":"Golden Mobil Auto","url":"https://goldenmobilauto.com/","telephone":"+62-811-7007-717","priceRange":"Rp 300.000+","address":{"@type":"PostalAddress","streetAddress":"Komplek Limindo Trade Centre Blok A No. 12A, Taman Baloi","addressLocality":"Batam","addressCountry":"ID"},"sameAs":["https://www.instagram.com/goldenmobilauto"]}
+{"@context":"https://schema.org","@type":"AutoRental","name":"Golden Mobil Auto","url":"https://vernanng.github.io/golden-mobil-auto/","telephone":"+62-811-7007-717","priceRange":"Rp 300.000+","address":{"@type":"PostalAddress","streetAddress":"Komplek Limindo Trade Centre Blok A No. 12A, Taman Baloi","addressLocality":"Batam","addressCountry":"ID"},"sameAs":["https://www.instagram.com/goldenmobilauto"]}
+</script>
+<script type="application/ld+json" id="faq-ld">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much does it cost to rent a car in Batam?","acceptedAnswer":{"@type":"Answer","text":"Daily rates start from Rp 300.000 for city cars like the Honda Brio and Toyota Avanza Veloz, and from Rp 500.000 for the Toyota Innova. Golden confirms the final price with you on WhatsApp before you pay — no hidden extras."}},
+{"@type":"Question","name":"Is GPS and insurance included?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every car comes with GPS and insurance covered — look for the badges in the No Hassle section."}},
+{"@type":"Question","name":"Can I rent with or without a driver?","acceptedAnswer":{"@type":"Answer","text":"Both. Every car is available for self-drive or with a Golden driver. Tell us your preference when you confirm on WhatsApp."}},
+{"@type":"Question","name":"What documents do I need to rent?","acceptedAnswer":{"@type":"Answer","text":"Bring a valid ID — visitors from Singapore and Malaysia just need a passport. Golden confirms the documents with you on WhatsApp before handover."}},
+{"@type":"Question","name":"Where can I pick up the car?","acceptedAnswer":{"@type":"Answer","text":"At the Golden office in Taman Baloi, at any of Batam's six passenger ferry terminals, or at Hang Nadim International Airport. You choose the pickup point in the booking dialog."}},
+{"@type":"Question","name":"How do I book and pay?","acceptedAnswer":{"@type":"Answer","text":"Pick a car, choose your START–END dates, add your name and pickup point, then confirm via WhatsApp. There is no payment on this site — you pay after Golden confirms availability and the final price."}}]}
 </script>
 <link rel="icon" href="assets/logo-gm-b.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -292,6 +304,12 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
 .check input{width:18px;height:18px;accent-color:var(--accent)}
 .dialog-note{font-size:var(--text-sm);color:var(--muted)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.faq-list{display:grid;gap:var(--space-3);max-width:800px}
+.faq-item{background:var(--surface);box-shadow:var(--elev-ring),var(--elev-raised);border-radius:var(--radius-lg);padding:var(--space-2) var(--space-5)}
+.faq-item summary{font-weight:600;cursor:pointer;padding-block:12px}
+.faq-item summary:hover{color:var(--accent-hover)}
+.faq-item summary:focus-visible{box-shadow:var(--focus-ring);border-radius:var(--radius-md)}
+.faq-item p{color:var(--muted);margin:0 0 var(--space-4)}
 </style>
 </head>
 <body>
@@ -360,8 +378,8 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
         <p class="lead" data-en="Pick a car, pick your dates, and you’re set — no promo codes, no hidden extras, no queues. We confirm the final price on WhatsApp before you pay, and your car is ready at the office, ferry port or airport." data-id="Pilih mobil, pilih tanggal, beres — tanpa kode promo, tanpa biaya tersembunyi, tanpa antre. Kami konfirmasi harga final via WhatsApp sebelum Anda membayar, dan mobil siap di kantor, pelabuhan feri, atau bandara.">Pick a car, pick your dates, and you’re set — no promo codes, no hidden extras, no queues. We confirm the final price on WhatsApp before you pay, and your car is ready at the office, ferry port or airport.</p>
       </div>
       <div data-od-id="promo-highlights" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
-        <span class="place-tag" data-en="✓ GPS in every car" data-id="✓ GPS di setiap mobil">✓ GPS in every car</span>
-        <span class="place-tag" data-en="✓ Insurance covered" data-id="✓ Asuransi termasuk">✓ Insurance covered</span>
+        <span class="place-tag" style="background:#cbbd5a;color:#0b0a32;border-color:#cbbd5a;font-weight:600" data-en="✓ GPS in every car" data-id="✓ GPS di setiap mobil">✓ GPS in every car</span>
+        <span class="place-tag" style="background:#cbbd5a;color:#0b0a32;border-color:#cbbd5a;font-weight:600" data-en="✓ Insurance covered" data-id="✓ Asuransi termasuk">✓ Insurance covered</span>
       </div>
       <div class="grid-3">
         <article class="step panel panel-pad" data-od-id="promo-city">
@@ -412,6 +430,41 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
     </div>
   </section>
 
+  <section class="section" id="faq" data-od-id="faq" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-en="Rental questions" data-id="Pertanyaan sewa">Rental questions</p>
+        <h2 data-en="Frequently asked questions" data-id="Pertanyaan yang sering ditanyakan">Frequently asked questions</h2>
+        <p class="lead" data-en="Quick answers before you book — anything else, just ask us on WhatsApp." data-id="Jawaban cepat sebelum memesan — selebihnya, tanya kami via WhatsApp.">Quick answers before you book — anything else, just ask us on WhatsApp.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" data-od-id="faq-price">
+          <summary data-en="How much does it cost to rent a car in Batam?" data-id="Berapa biaya sewa mobil di Batam?">How much does it cost to rent a car in Batam?</summary>
+          <p><span data-en="Daily rates start from Rp 300.000 for city cars like the Honda Brio and Toyota Avanza Veloz, and from Rp 500.000 for the Toyota Innova. Golden confirms the final price with you on WhatsApp before you pay — no hidden extras." data-id="Tarif harian mulai Rp 300.000 untuk mobil kota seperti Honda Brio dan Toyota Avanza Veloz, dan mulai Rp 500.000 untuk Toyota Innova. Golden mengonfirmasi harga final via WhatsApp sebelum Anda membayar — tanpa biaya tersembunyi.">Daily rates start from Rp 300.000 for city cars like the Honda Brio and Toyota Avanza Veloz, and from Rp 500.000 for the Toyota Innova. Golden confirms the final price with you on WhatsApp before you pay — no hidden extras.</span></p>
+        </details>
+        <details class="faq-item" data-od-id="faq-gps-insurance">
+          <summary data-en="Is GPS and insurance included?" data-id="Apakah GPS dan asuransi termasuk?">Is GPS and insurance included?</summary>
+          <p><span data-en="Yes. Every car comes with GPS and insurance covered — look for the badges in the No Hassle section." data-id="Ya. Setiap mobil dilengkapi GPS dan asuransi termasuk — lihat badge di bagian Tanpa Ribet.">Yes. Every car comes with GPS and insurance covered — look for the badges in the No Hassle section.</span></p>
+        </details>
+        <details class="faq-item" data-od-id="faq-driver">
+          <summary data-en="Can I rent with or without a driver?" data-id="Bisa sewa dengan atau tanpa sopir?">Can I rent with or without a driver?</summary>
+          <p><span data-en="Both. Every car is available for self-drive or with a Golden driver. Tell us your preference when you confirm on WhatsApp." data-id="Bisa keduanya. Semua mobil tersedia untuk setir sendiri atau dengan sopir Golden. Sampaikan pilihan Anda saat konfirmasi via WhatsApp.">Both. Every car is available for self-drive or with a Golden driver. Tell us your preference when you confirm on WhatsApp.</span></p>
+        </details>
+        <details class="faq-item" data-od-id="faq-documents">
+          <summary data-en="What documents do I need to rent?" data-id="Dokumen apa yang dibutuhkan untuk sewa?">What documents do I need to rent?</summary>
+          <p><span data-en="Bring a valid ID — visitors from Singapore and Malaysia just need a passport. Golden confirms the documents with you on WhatsApp before handover." data-id="Bawa identitas yang masih berlaku — wisatawan dari Singapura dan Malaysia cukup membawa paspor. Golden mengonfirmasi dokumen via WhatsApp sebelum serah terima.">Bring a valid ID — visitors from Singapore and Malaysia just need a passport. Golden confirms the documents with you on WhatsApp before handover.</span></p>
+        </details>
+        <details class="faq-item" data-od-id="faq-pickup">
+          <summary data-en="Where can I pick up the car?" data-id="Di mana saya bisa mengambil mobil?">Where can I pick up the car?</summary>
+          <p><span data-en="At the Golden office in Taman Baloi, at any of Batam's six passenger ferry terminals, or at Hang Nadim International Airport. You choose the pickup point in the booking dialog." data-id="Di kantor Golden di Taman Baloi, di enam terminal feri penumpang Batam, atau di Bandara Internasional Hang Nadim. Anda memilih titik jemput di dialog pemesanan.">At the Golden office in Taman Baloi, at any of Batam's six passenger ferry terminals, or at Hang Nadim International Airport. You choose the pickup point in the booking dialog.</span></p>
+        </details>
+        <details class="faq-item" data-od-id="faq-booking">
+          <summary data-en="How do I book and pay?" data-id="Bagaimana cara memesan dan membayar?">How do I book and pay?</summary>
+          <p><span data-en="Pick a car, choose your START–END dates, add your name and pickup point, then confirm via WhatsApp. There is no payment on this site — you pay after Golden confirms availability and the final price." data-id="Pilih mobil, pilih tanggal MULAI–SELESAI, isi nama dan titik jemput, lalu konfirmasi via WhatsApp. Tidak ada pembayaran di situs ini — Anda membayar setelah Golden mengonfirmasi ketersediaan dan harga final.">Pick a car, choose your START–END dates, add your name and pickup point, then confirm via WhatsApp. There is no payment on this site — you pay after Golden confirms availability and the final price.</span></p>
+        </details>
+      </div>
+    </div>
+  </section>
   <section class="section" style="padding-top:0" data-od-id="cta">
     <div class="container">
       <div class="cta-band panel">
@@ -457,6 +510,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
       <nav aria-label="Footer">
         <a href="#fleet" data-en="Fleet" data-id="Armada">Fleet</a>
         <a href="#promo" data-en="Promo" data-id="Promo">Promo</a>
+        <a href="#faq" data-en="FAQ" data-id="FAQ">FAQ</a>
         <a href="where-to-go.html" data-en="Where to go" data-id="Destinasi">Where to go</a>
         <a href="#top" data-en="Back to top" data-id="Ke atas">Back to top</a>
       </nav>

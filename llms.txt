@@ -4,8 +4,8 @@
 > Golden office, ferry ports, or Hang Nadim Airport. Sewa mobil di Batam —
 > mudah, tanpa ribet.
 
-- Site: https://goldenmobilauto.com/
-- Guide: https://goldenmobilauto.com/where-to-go/
+- Site (English): https://vernanng.github.io/golden-mobil-auto/ — Indonesian: https://vernanng.github.io/golden-mobil-auto/id/
+- Guide (English): https://vernanng.github.io/golden-mobil-auto/where-to-go.html — Indonesian: https://vernanng.github.io/golden-mobil-auto/id/where-to-go.html
 - WhatsApp: https://wa.me/628117007717 (rental bookings, price confirmation)
 - Phone: +62 811-7007-717
 - Instagram: https://www.instagram.com/goldenmobilauto
@@ -26,6 +26,15 @@ Booking: pick a car, pick START–END dates (past dates disabled), choose a
 pickup point (office, Batam Centre / Harbour Bay / Sekupang / Nongsapura /
 Teluk Senimba / Telaga Punggur ferry terminals, or Hang Nadim Airport), and
 confirm on WhatsApp. Final price is confirmed on WhatsApp before payment.
+
+## Rental FAQ (full answers carry FAQPage schema on the homepage)
+
+- How much? From Rp 300.000/day (city cars), Innova from Rp 500.000 — final price confirmed before payment, no hidden extras
+- GPS and insurance included in every car
+- With or without a driver; state your preference on WhatsApp
+- Bring a valid ID (passport for Singapore/Malaysia visitors)
+- Pickup: Golden office Taman Baloi, 6 ferry terminals, or Hang Nadim Airport
+- Booking: pick car + START–END dates + name + pickup, confirm via WhatsApp; no on-site payment
 
 ## Where to go in Batam (trending places)
 

@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://goldenmobilauto.com/sitemap.xml
+Sitemap: https://vernanng.github.io/golden-mobil-auto/sitemap.xml
