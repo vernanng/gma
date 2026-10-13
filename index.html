@@ -168,7 +168,8 @@ h3{font-size:var(--text-lg)}
 .lang-toggle button{background:transparent;border:0;color:var(--muted);font-size:var(--text-sm);font-weight:500;padding:6px 10px;min-height:32px;border-radius:var(--radius-md)}
 .lang-toggle button:hover{color:var(--fg)}
 .lang-toggle button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:var(--elev-raised)}
-@media(max-width:920px){.topnav nav{display:none}.logo-img{width:132px}}
+.menu-btn{display:none}
+@media(max-width:920px){.topnav-inner{position:relative}.topnav nav{display:none}.topnav.open nav{display:flex;position:absolute;top:100%;left:12px;right:12px;flex-direction:column;gap:0;background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--elev-ring),var(--elev-raised);padding:8px;z-index:30}.topnav.open nav a{padding:12px;min-height:44px;display:flex;align-items:center;border-radius:var(--radius-md)}.topnav.open nav a:hover{background:var(--surface-warm)}.menu-btn{display:inline-flex}.logo-img{width:132px}}
 
 /* buttons — secondary by default, one primary per decision (Kumo) */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:8px 14px;border-radius:var(--radius-lg);border:0;box-shadow:var(--elev-ring);background:var(--surface);color:var(--fg);font-size:var(--text-base);font-weight:500;min-height:36px}
@@ -307,7 +308,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
 <header class="topnav" data-od-id="topnav">
   <div class="container topnav-inner">
     <a class="logo-wrap" href="#top" aria-label="Golden Mobil Auto" style="background:var(--surface)"><img class="logo-img" src="assets/logo-gm-b.png" alt="Golden Mobil Auto" width="803" height="100"></a>
-    <nav aria-label="Main">
+    <nav aria-label="Main" id="main-nav">
       <a href="#fleet" data-en="Fleet" data-id="Armada">Fleet</a>
       <a href="#promo" data-en="Promo" data-id="Promo">Promo</a>
       <a href="#how" data-en="How it works" data-id="Cara sewa">How it works</a>
@@ -321,6 +322,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
         <button type="button" id="lang-id" aria-pressed="false">ID</button>
       </div>
       <a class="btn" href="#fleet" data-en="Book" data-id="Pesan">Book</a>
+      <button type="button" class="btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">☰</button>
     </div>
   </div>
 </header>
@@ -470,12 +472,13 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
       <div><p class="eyebrow" data-en="Book this car" data-id="Pesan mobil ini">Book this car</p><h3 id="dialog-title">—</h3></div>
       <button class="icon-btn" type="button" id="dialog-close" aria-label="Close">×</button>
     </div>
-    <div class="field"><label for="bk-start" data-en="Rental dates (START–END)" data-id="Tanggal sewa (MULAI–SELESAI)">Rental dates (START–END)</label><div class="date-range"><input type="date" id="bk-start" aria-label="Start date" required=""><span aria-hidden="true">–</span><input type="date" id="bk-end" aria-label="End date" required=""></div><span class="field-error" id="bk-error" data-en="Add your name, phone number and a START–END date range to continue." data-id="Isi nama, nomor HP dan rentang tanggal MULAI–SELESAI untuk lanjut.">Add your name, phone number and a START–END date range to continue.</span></div>
+    <div class="field"><label for="bk-start" data-en="Rental dates (START–END)" data-id="Tanggal sewa (MULAI–SELESAI)">Rental dates (START–END)</label><div class="date-range"><input type="date" id="bk-start" aria-label="Start date" required=""><span aria-hidden="true">–</span><input type="date" id="bk-end" aria-label="End date" required=""></div><span class="field-error" id="bk-error" data-en="Add your name and a START–END date range to continue." data-id="Isi nama dan rentang tanggal MULAI–SELESAI untuk lanjut.">Add your name and a START–END date range to continue.</span></div>
     <div class="field"><label for="bk-pickup" data-en="Pickup" data-id="Pengambilan">Pickup</label><select id="bk-pickup"><option value="office" data-en="Golden office — Taman Baloi" data-id="Kantor Golden — Taman Baloi">Golden office — Taman Baloi</option><option value="ferry-batam-centre" data-en="Batam Centre Ferry Terminal" data-id="Terminal Ferry Batam Centre">Batam Centre Ferry Terminal</option><option value="ferry-harbour-bay" data-en="Harbour Bay Ferry Terminal" data-id="Terminal Ferry Harbour Bay">Harbour Bay Ferry Terminal</option><option value="ferry-sekupang" data-en="Sekupang Ferry Terminal" data-id="Terminal Ferry Sekupang">Sekupang Ferry Terminal</option><option value="ferry-nongsapura" data-en="Nongsapura Ferry Terminal" data-id="Terminal Ferry Nongsapura">Nongsapura Ferry Terminal</option><option value="ferry-teluk-senimba" data-en="Teluk Senimba Ferry Terminal (Waterfront City)" data-id="Terminal Ferry Teluk Senimba (Waterfront City)">Teluk Senimba Ferry Terminal (Waterfront City)</option><option value="ferry-telaga-punggur" data-en="Telaga Punggur Ferry Terminal" data-id="Terminal Ferry Telaga Punggur">Telaga Punggur Ferry Terminal</option><option value="ferry-bengkong" data-en="Bengkong Harbour" data-id="Bengkong Harbour">Bengkong Harbour</option><option value="airport-hang-nadim" data-en="Hang Nadim International Airport (BTH)" data-id="Bandara Internasional Hang Nadim (BTH)">Hang Nadim International Airport (BTH)</option><option value="custom" data-en="Custom location — tell us where" data-id="Lokasi lain — beri tahu kami">Custom location — tell us where</option></select></div>
     <div class="field" id="bk-custom-wrap" hidden=""><label for="bk-custom" data-en="Your pickup location" data-id="Lokasi pengambilan kamu">Your pickup location</label><input type="text" id="bk-custom" autocomplete="street-address" placeholder="Hotel / address in Batam"></div>
     <div class="field"><label for="bk-trip" data-en="Flight / Ferry number (optional)" data-id="Nomor penerbangan / ferry (opsional)">Flight / Ferry number (optional)</label><input type="text" id="bk-trip" autocomplete="off" inputmode="text" placeholder="JT 821 / Majestic 10:30"></div>
-    <div class="field"><label for="bk-phone" data-en="Phone / WhatsApp number" data-id="Nomor HP / WhatsApp">Phone / WhatsApp number</label><input type="tel" id="bk-phone" autocomplete="tel" inputmode="tel" required=""></div>
+    <div class="field"><label for="bk-phone" data-en="Phone / WhatsApp number (optional)" data-id="Nomor HP / WhatsApp (opsional)">Phone / WhatsApp number (optional)</label><input type="tel" id="bk-phone" autocomplete="tel" inputmode="tel"></div>
     <div class="field"><label for="bk-name" data-en="Your name" data-id="Nama kamu">Your name</label><input type="text" id="bk-name" autocomplete="name" required=""></div>
+    <p class="car-spec" id="bk-summary" aria-live="polite" style="margin:0"></p>
     <div class="total"><span data-en="Estimated total" data-id="Estimasi total">Estimated total</span><span class="num" id="bk-total">—</span></div>
     <button class="btn btn-primary btn-block" type="submit" data-en="Confirm via WhatsApp" data-id="Konfirmasi via WhatsApp">Confirm via WhatsApp</button>
     <p class="dialog-note" data-en="No payment here — Golden confirms availability and documents with you on WhatsApp." data-id="Tidak ada pembayaran di sini — Golden akan mengonfirmasi ketersediaan dan dokumen via WhatsApp.">No payment here — Golden confirms availability and documents with you on WhatsApp.</p>
@@ -572,12 +575,13 @@ const dlg=document.getElementById("book-dialog");
 const DAY=86400000, fmtDay=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"), todayStr=()=>fmtDay(new Date());
 function rangeDays(){ const s=document.getElementById("bk-start").value,e=document.getElementById("bk-end").value; if(!s||!e) return 0; return Math.round((new Date(e)-new Date(s))/DAY)+1; }
 function total(){ if(!selected) return; const d=rangeDays(); document.getElementById("bk-total").textContent=d>0?fmt(selected.price*d):"—"; }
+function updateSummary(){ var el=document.getElementById("bk-summary"); if(!el||!selected) return; var s=document.getElementById("bk-start").value,e=document.getElementById("bk-end").value; var pk=document.getElementById("bk-pickup"); var pv=pk?pk.selectedOptions[0].textContent.trim():""; var tr=document.getElementById("bk-trip").value.trim(); var parts=[selected.name]; if(s&&e) parts.push(s+" \u2192 "+e); if(pv) parts.push(pv); el.textContent=tr?parts.join(" \u00b7 ")+" \u00b7 "+(lang==="id"?"Penerbangan/Ferry: ":"Flight/Ferry: ")+tr:parts.join(" \u00b7 "); }
 function syncRange(){
   const s=document.getElementById("bk-start"),e=document.getElementById("bk-end"),today=todayStr();
   s.min=today; if(s.value&&s.value<today) s.value=today;
   e.min=s.value||today; if(e.value&&e.value<e.min) e.value=e.min;
   s.setAttribute("aria-label",lang==="id"?"Tanggal mulai":"Start date"); e.setAttribute("aria-label",lang==="id"?"Tanggal selesai":"End date");
-  total();
+  total(); updateSummary();
 }
 function openBook(id){
   selected=CARS.find(c=>c.id===id);
@@ -592,10 +596,12 @@ function openBook(id){
   document.getElementById("bk-error").classList.remove("show"); syncRange(); dlg.showModal();
 }
 ["bk-start","bk-end"].forEach(i=>document.getElementById(i).addEventListener("change",syncRange));
+document.getElementById("bk-trip").addEventListener("input",updateSummary);
 document.getElementById("bk-pickup").addEventListener("change",()=>{
   const custom=document.getElementById("bk-pickup").value==="custom";
   document.getElementById("bk-custom-wrap").hidden=!custom;
   if(custom) document.getElementById("bk-custom").focus();
+  updateSummary();
 });
 document.querySelectorAll("[data-promo-book]").forEach(b=>b.addEventListener("click",()=>openBook(b.dataset.promoBook)));
 document.getElementById("dialog-close").addEventListener("click",()=>dlg.close());
@@ -603,12 +609,15 @@ document.getElementById("book-form").addEventListener("submit",e=>{
   const name=document.getElementById("bk-name").value.trim(), start=document.getElementById("bk-start").value, end=document.getElementById("bk-end").value, days=rangeDays();
   const phone=document.getElementById("bk-phone").value.trim(), trip=document.getElementById("bk-trip").value.trim();
   const isCustom=document.getElementById("bk-pickup").value==="custom", custom=document.getElementById("bk-custom").value.trim();
-  if(!name||!phone||!start||!end||days<1||(isCustom&&!custom)){ e.preventDefault(); document.getElementById("bk-error").classList.add("show"); return; }
+  if(!name||!start||!end||days<1||(isCustom&&!custom)){ e.preventDefault(); document.getElementById("bk-error").classList.add("show"); return; }
   const pickup=isCustom?custom:document.getElementById("bk-pickup").selectedOptions[0].textContent.trim();
   const tripPart=trip?`, flight/ferry: ${trip}`:"";
-  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${name} (${phone}). I would like to rent the ${selected.name} from ${start} to ${end} (${days} day(s)), pickup: ${pickup}${tripPart}. Estimated total: ${fmt(selected.price*days)}.`);
+  const who=phone?`${name} (${phone})`:name;
+  const msg=encodeURIComponent(`Hello Golden Mobil Auto, I am ${who}. I would like to rent the ${selected.name} from ${start} to ${end} (${days} day(s)), pickup: ${pickup}${tripPart}. Estimated total: ${fmt(selected.price*days)}.`);
   window.open("https://wa.me/628117007717?text="+msg,"_blank");
 });
+var menuBtn=document.getElementById("menu-btn");
+if(menuBtn){menuBtn.addEventListener("click",function(){var h=document.querySelector(".topnav");var open=h.classList.toggle("open");menuBtn.setAttribute("aria-expanded",String(open));});document.querySelectorAll(".topnav nav a").forEach(function(a){a.addEventListener("click",function(){document.querySelector(".topnav").classList.remove("open");menuBtn.setAttribute("aria-expanded","false");});});}
 applyLang();
 localStorage.removeItem("gm-mode");
 /* IG: open IG app on mobile, fall back to web profile */

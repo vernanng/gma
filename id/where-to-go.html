@@ -177,7 +177,8 @@ h3{font-size:var(--text-lg)}
 .lang-toggle button{background:transparent;border:0;color:var(--muted);font-size:var(--text-sm);font-weight:500;padding:6px 10px;min-height:32px;border-radius:var(--radius-md)}
 .lang-toggle button:hover{color:var(--fg)}
 .lang-toggle button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:var(--elev-raised)}
-@media(max-width:920px){.topnav nav{display:none}.logo-img{width:132px}}
+.menu-btn{display:none}
+@media(max-width:920px){.topnav-inner{position:relative}.topnav nav{display:none}.topnav.open nav{display:flex;position:absolute;top:100%;left:12px;right:12px;flex-direction:column;gap:0;background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--elev-ring),var(--elev-raised);padding:8px;z-index:30}.topnav.open nav a{padding:12px;min-height:44px;display:flex;align-items:center;border-radius:var(--radius-md)}.topnav.open nav a:hover{background:var(--surface-warm)}.menu-btn{display:inline-flex}.logo-img{width:132px}}
 
 /* buttons — secondary by default, one primary per decision (Kumo) */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:8px 14px;border-radius:var(--radius-lg);border:0;box-shadow:var(--elev-ring);background:var(--surface);color:var(--fg);font-size:var(--text-base);font-weight:500;min-height:36px}
@@ -316,7 +317,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
 <header class="topnav" data-od-id="topnav">
   <div class="container topnav-inner">
     <a class="logo-wrap" href="index.html#top" aria-label="Golden Mobil Auto" style="background:var(--surface)"><img class="logo-img" src="../assets/logo-gm-b.png" alt="Golden Mobil Auto" width="803" height="100"></a>
-    <nav aria-label="Main">
+    <nav aria-label="Main" id="main-nav">
       <a href="index.html#fleet" data-en="Fleet" data-id="Armada">Armada</a>
       <a href="index.html#promo" data-en="Promo" data-id="Promo">Promo</a>
       <a href="index.html#how" data-en="How it works" data-id="Cara sewa">Cara sewa</a>
@@ -330,6 +331,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
         <button type="button" id="lang-id" aria-pressed="true">ID</button>
       </div>
       <a class="btn" href="index.html#fleet" data-en="Book" data-id="Pesan">Pesan</a>
+      <button type="button" class="btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">☰</button>
     </div>
   </div>
 </header>
@@ -460,6 +462,8 @@ function applyLang(){
 }
 document.getElementById("lang-en").addEventListener("click",function(){lang="en";applyLang();});
 document.getElementById("lang-id").addEventListener("click",function(){lang="id";applyLang();});
+var menuBtn=document.getElementById("menu-btn");
+if(menuBtn){menuBtn.addEventListener("click",function(){var h=document.querySelector(".topnav");var open=h.classList.toggle("open");menuBtn.setAttribute("aria-expanded",String(open));});document.querySelectorAll(".topnav nav a").forEach(function(a){a.addEventListener("click",function(){document.querySelector(".topnav").classList.remove("open");menuBtn.setAttribute("aria-expanded","false");});});}
 applyLang();
 localStorage.removeItem("gm-mode");
 var ig=document.getElementById("ig-link");
