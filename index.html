@@ -103,30 +103,6 @@
   --container-gutter-phone: 12px;
 }
 
-/* Kumo uses data-mode="dark". The data-theme selector keeps generated Open
- * Design artifacts compatible with the repository's standard theme hook. */
-[data-theme="dark"],
-[data-mode="dark"] {
-  --bg: oklch(10% 0 0);
-  --surface: oklch(17% 0 0);
-  --surface-warm: oklch(15% 0 0);
-  --fg: oklch(97% 0 0);
-  --fg-2: var(--fg);
-  --muted: oklch(70.8% 0 0);
-  --meta: var(--muted);
-  --border: oklch(32% 0 0);
-  --border-soft: oklch(26.9% 0 0);
-  --accent: color-mix(in oklch, oklch(0.5772 0.2324 260), black 10%);
-  --accent-on: #ffffff;
-  --accent-hover: oklch(48.8% 0.243 264.376);
-  --accent-active: var(--accent-hover);
-  --success: oklch(76.5% 0.177 163.223);
-  --warn: oklch(64.5% 0.168 50);
-  --danger: oklch(57.7% 0.245 27.325);
-  --elev-raised: 0 1px 2px 0 oklch(0% 0 0 / 0.3);
-  --focus-ring: 0 0 0 2px oklch(93.5% 0 0);
-}
-
 @media (prefers-reduced-motion: reduce) {
   :root {
     --motion-fast: 0ms;
@@ -170,8 +146,6 @@ h3{font-size:var(--text-lg)}
 .lang-toggle button{background:transparent;border:0;color:var(--muted);font-size:var(--text-sm);font-weight:500;padding:6px 10px;min-height:32px;border-radius:var(--radius-md)}
 .lang-toggle button:hover{color:var(--fg)}
 .lang-toggle button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:var(--elev-raised)}
-.mode-toggle{background:var(--surface);border:0;box-shadow:var(--elev-ring);color:var(--fg);border-radius:var(--radius-lg);min-height:36px;padding:8px 12px;font-size:var(--text-sm);font-weight:500}
-.mode-toggle:hover{background:var(--surface-warm)}
 @media(max-width:920px){.topnav nav{display:none}.logo-img{width:132px}}
 
 /* buttons — secondary by default, one primary per decision (Kumo) */
@@ -273,7 +247,6 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
         <button type="button" id="lang-en" aria-pressed="true">EN</button>
         <button type="button" id="lang-id" aria-pressed="false">ID</button>
       </div>
-      <button class="mode-toggle" type="button" id="mode-toggle" aria-pressed="false">Dark</button>
       <a class="btn" href="#fleet" data-en="Book now" data-id="Pesan sekarang">Book now</a>
     </div>
   </div>
@@ -487,19 +460,10 @@ function applyLang(){
   document.getElementById("lang-en").setAttribute("aria-pressed",lang==="en");
   document.getElementById("lang-id").setAttribute("aria-pressed",lang==="id");
   document.querySelectorAll("[data-en]").forEach(el=>{el.textContent=lang==="id"?el.dataset.id:el.dataset.en;});
-  localStorage.setItem("gm-lang",lang); render(); applyMode(document.documentElement.dataset.mode==="dark");
+  localStorage.setItem("gm-lang",lang); render();
 }
 document.getElementById("lang-en").addEventListener("click",()=>{lang="en";applyLang();});
 document.getElementById("lang-id").addEventListener("click",()=>{lang="id";applyLang();});
-
-/* Kumo dark mode: semantic tokens flip, no per-component variants */
-const modeBtn=document.getElementById("mode-toggle");
-function applyMode(dark){
-  if(dark){document.documentElement.dataset.mode="dark";}else{delete document.documentElement.dataset.mode;}
-  modeBtn.setAttribute("aria-pressed",dark); modeBtn.textContent=dark?(lang==="id"?"Terang":"Light"):(lang==="id"?"Gelap":"Dark");
-  localStorage.setItem("gm-mode",dark?"dark":"light");
-}
-modeBtn.addEventListener("click",()=>applyMode(document.documentElement.dataset.mode!=="dark"));
 
 /* booking dialog */
 const dlg=document.getElementById("book-dialog");
@@ -532,7 +496,7 @@ document.getElementById("booking-bar").addEventListener("submit",e=>{
   const y=document.getElementById("fleet").getBoundingClientRect().top+window.scrollY-72; window.scrollTo({top:y,behavior:"smooth"});
 });
 applyLang();
-applyMode(localStorage.getItem("gm-mode")==="dark");
+localStorage.removeItem("gm-mode");
 </script>
 </body>
 </html>
