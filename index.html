@@ -257,9 +257,11 @@ h3{font-size:var(--text-lg)}
 .foot-bottom nav a{font-weight:500}
 
 /* dialog */
-dialog{border:0;box-shadow:var(--elev-ring),var(--elev-raised);border-radius:var(--radius-lg);padding:0;max-width:480px;width:calc(100% - 32px);color:var(--fg);background:var(--surface)}
+dialog{border:0;box-shadow:var(--elev-ring),var(--elev-raised);border-radius:var(--radius-lg);padding:0;max-width:480px;width:calc(100% - 32px);max-height:calc(100dvh - 32px);color:var(--fg);background:var(--surface)}
 dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
-.dialog-body{padding:var(--space-6);display:grid;gap:var(--space-4)}
+.dialog-body{padding:var(--space-6);display:grid;gap:var(--space-4);max-height:calc(100dvh - 32px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
+.date-range input{min-width:0}
+@media(max-width:480px){.dialog-body{padding:var(--space-4);gap:var(--space-3)}}
 .dialog-head{display:flex;justify-content:space-between;align-items:start;gap:var(--space-4)}
 .icon-btn{background:var(--surface);border:0;box-shadow:var(--elev-ring);border-radius:var(--radius-lg);width:36px;height:36px;font-size:var(--text-lg);color:var(--fg)}
 .icon-btn:hover{background:var(--surface-warm)}
