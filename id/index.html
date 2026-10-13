@@ -446,7 +446,7 @@ dialog::backdrop{background:color-mix(in oklch,var(--fg) 45%,transparent)}
         </div>
       </div>
       <div class="foot-map panel">
-        <iframe title="Google Maps — Golden Mobil Auto, Komplek Limindo Trade Centre Blok A No. 12A, Taman Baloi, Batam" src="https://www.google.com/maps?q=Golden%20Mobil%20Auto%2C%20Komplek%20Limindo%20Trade%20Centre%20Blok%20A%20No.%2012A%2C%20Taman%20Baloi%2C%20Kota%20Batam%2C%20Kepulauan%20Riau%2029444&amp;z=16&amp;output=embed" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a href="https://maps.app.goo.gl/1xrc7Jh5UunUSCbZ6" target="_blank" rel="noopener" aria-label="Open Golden Mobil Auto in Google Maps"><img src="../assets/map-golden-office.svg" alt="Map showing Golden Mobil Auto at Taman Baloi, Batam — tap to open in Google Maps" width="800" height="500" loading="lazy" style="display:block;width:100%;height:auto;cursor:pointer"></a>
         <div class="foot-map-bar">
           <span data-en="Golden Mobil Auto · Taman Baloi, Batam" data-id="Golden Mobil Auto · Taman Baloi, Batam">Golden Mobil Auto · Taman Baloi, Batam</span>
           <a class="foot-map-link" href="https://maps.app.goo.gl/1xrc7Jh5UunUSCbZ6" target="_blank" rel="noopener"><span data-en="Open in Google Maps" data-id="Buka di Google Maps">Buka di Google Maps</span> ↗</a>
@@ -511,7 +511,7 @@ function render(){
   document.getElementById("fleet-empty").classList.toggle("show",!list.length);
   grid.innerHTML=list.map(c=>`
    <article class="car-card panel" data-od-id="car-${c.id}">
-     <div class="car-media"><img src="${c.img}" alt="${c.name}" width="800" height="800" loading="lazy"></div>
+     <div class="car-media"><img src="${c.img}" alt="${c.name}" width="800" height="800" loading="lazy" onerror="this.onerror=null;this.src=this.src.indexOf('../')===0?'../assets/logo-gm-b.png':'assets/logo-gm-b.png'"></div>
      <div class="car-body">
        <span class="car-cat">${lang==="id"?c.specId:c.specEn}</span>
        <h3>${c.name}</h3>
@@ -541,7 +541,7 @@ function startSlides(){
 function renderSlide(){
   track.innerHTML=CARS.map(c=>`
    <figure class="car-slide">
-     <div class="car-slide-media"><img src="${c.img}" alt="${c.name}" width="800" height="800"></div>
+     <div class="car-slide-media"><img src="${c.img}" alt="${c.name}" width="800" height="800" loading="lazy" onerror="this.onerror=null;this.src=this.src.indexOf('../')===0?'../assets/logo-gm-b.png':'assets/logo-gm-b.png'"></div>
      <figcaption class="car-slide-cap">
        <div><div class="car-slide-name">${c.name}</div><div class="car-slide-spec">${lang==="id"?c.specId:c.specEn}</div></div>
        <div class="car-slide-foot"><span class="car-slide-price num">${fmt(c.price)}<small>${lang==="id"?"mulai dari / hari":"start from / day"}</small></span><button type="button" class="btn btn-primary" data-slide-book="${c.id}">${lang==="id"?"Pesan":"Book"}</button></div>
