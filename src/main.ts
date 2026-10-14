@@ -17,14 +17,14 @@ interface Car {
 }
 
 const CARS: readonly Car[] = [
-  { id: "honda-brio", name: "Honda Brio", img: "assets/honda-brio.webp", cat: "4", price: 300000, en: "Compact and fuel-efficient for city trips.", idn: "Kompak dan irit BBM untuk perjalanan dalam kota.", specEn: "4 Seater", specId: "4 Kursi" },
-  { id: "avanza-veloz", name: "Toyota Avanza Veloz", img: "assets/avanza-veloz.webp", cat: "6", price: 300000, en: "Family MPV with Manual and CVT options.", idn: "MPV keluarga dengan pilihan Manual dan CVT.", specEn: "6 Seater · Manual / CVT", specId: "6 Kursi · Manual / CVT" },
-  { id: "innova-reborn", name: "Toyota Innova Reborn", img: "assets/toyota-innova-reborn.webp", cat: "6", price: 500000, en: "Roomy MPV — 2.0 petrol Dual VVT-i or 2.4 diesel.", idn: "MPV lega — bensin 2.0 Dual VVT-i atau diesel 2.4.", specEn: "6 Seater", specId: "6 Kursi" },
-  { id: "innova-venturer", name: "Toyota Innova Venturer", img: "assets/toyota-innova-venturer.webp", cat: "6", price: 600000, en: "The Innova with a more premium cabin.", idn: "Innova dengan kabin yang lebih premium.", specEn: "6 Seater", specId: "6 Kursi" },
-  { id: "innova-zenix", name: "Toyota Innova Zenix", img: "assets/toyota-innova-zenix.webp", cat: "6", price: 700000, en: "The newest Innova for family trips.", idn: "Innova terbaru untuk perjalanan keluarga.", specEn: "6 Seater", specId: "6 Kursi" },
-  { id: "fortuner", name: "Toyota Fortuner", img: "assets/toyota-fortuner.webp", cat: "6", price: 1100000, en: "2.4 diesel SUV, 6-speed automatic.", idn: "SUV diesel 2.4, otomatis 6 percepatan.", specEn: "6 Seater · SUV", specId: "6 Kursi · SUV" },
-  { id: "hiace", name: "Toyota Hiace", img: "assets/toyota-hiace.webp", cat: "bus", price: 1500000, en: "Group van for family and company trips.", idn: "Van rombongan untuk keluarga dan perusahaan.", specEn: "Bus · 11–16 Seater", specId: "Bus · 11–16 Kursi" },
-  { id: "alphard", name: "Toyota Alphard", img: "assets/alphard-2022.webp", cat: "luxury", price: 2500000, en: "Luxury MPV for occasions that matter.", idn: "MPV mewah untuk momen istimewa.", specEn: "Luxury Car", specId: "Mobil Mewah" },
+  { id: "honda-brio", name: "Honda Brio", img: "assets/honda-brio.webp", cat: "4", price: 300000, en: "Compact and fuel-efficient for city trips.", idn: "Kompak dan irit BBM untuk perjalanan dalam kota.", specEn: "4 Seater · Petrol · Automatic", specId: "4 Kursi · Bensin · Otomatis" },
+  { id: "avanza-veloz", name: "Toyota Avanza Veloz", img: "assets/avanza-veloz.webp", cat: "6", price: 300000, en: "Family MPV with automatic comfort.", idn: "MPV keluarga yang nyaman dengan transmisi otomatis.", specEn: "6 Seater · Petrol · Automatic", specId: "6 Kursi · Bensin · Otomatis" },
+  { id: "innova-reborn", name: "Toyota Innova Reborn", img: "assets/toyota-innova-reborn.webp", cat: "6", price: 500000, en: "Roomy MPV — 2.0 petrol Dual VVT-i, automatic.", idn: "MPV lega — bensin 2.0 Dual VVT-i, otomatis.", specEn: "6 Seater · Petrol · Automatic", specId: "6 Kursi · Bensin · Otomatis" },
+  { id: "innova-venturer", name: "Toyota Innova Venturer", img: "assets/toyota-innova-venturer.webp", cat: "6", price: 600000, en: "The Innova with a more premium cabin.", idn: "Innova dengan kabin yang lebih premium.", specEn: "6 Seater · Petrol · Automatic", specId: "6 Kursi · Bensin · Otomatis" },
+  { id: "innova-zenix", name: "Toyota Innova Zenix", img: "assets/toyota-innova-zenix.webp", cat: "6", price: 700000, en: "The newest Innova for family trips.", idn: "Innova terbaru untuk perjalanan keluarga.", specEn: "6 Seater · Petrol · Automatic", specId: "6 Kursi · Bensin · Otomatis" },
+  { id: "fortuner", name: "Toyota Fortuner", img: "assets/toyota-fortuner.webp", cat: "6", price: 1100000, en: "Petrol SUV, 6-speed automatic.", idn: "SUV bensin, otomatis 6 percepatan.", specEn: "6 Seater · SUV · Petrol · Automatic", specId: "6 Kursi · SUV · Bensin · Otomatis" },
+  { id: "hiace", name: "Toyota Hiace", img: "assets/toyota-hiace.webp", cat: "bus", price: 1500000, en: "Group van for family and company trips.", idn: "Van rombongan untuk keluarga dan perusahaan.", specEn: "Bus · 11–16 Seater · Petrol · Automatic", specId: "Bus · 11–16 Kursi · Bensin · Otomatis" },
+  { id: "alphard", name: "Toyota Alphard", img: "assets/alphard-2022.webp", cat: "luxury", price: 2500000, en: "Luxury MPV for occasions that matter.", idn: "MPV mewah untuk momen istimewa.", specEn: "Luxury Car · Petrol · Automatic", specId: "Mobil Mewah · Bensin · Otomatis" },
 ];
 
 const CATS: ReadonlyArray<readonly [Category, string, string]> = [
