@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "method": "image-to-code deep extraction of the original photo, then imagegen regeneration from this spec",
+  "qualityBenchmark": {
+    "reference": "assets/barelang-bridge.jpg",
+    "sourceSize": [900, 600],
+    "traits": ["sharp foreground detail", "saturated but natural color", "clean sky gradient", "no people in foreground", "no watermark", "landscape travel-photography finish"]
+  },
+  "output": { "aspectRatio": "4:3", "style": "photorealistic travel photography, high detail, natural light, no text overlay, no watermark" },
+  "images": [
+    {
+      "id": "bukit-senyum",
+      "source": "assets/bukit-senyum.jpg",
+      "sourceSize": [969, 607],
+      "landmark": {
+        "name": "Bukit Senyum viewpoint, Batam",
+        "mustKeep": ["hilltop viewing platform with wooden railing in the foreground", "night panorama over Batam city lights", "dark tree line between platform and city", "distant illuminated high-rises on the left and a warm-lit hotel block on the right"]
+      },
+      "composition": { "framing": "wide landscape from the platform, railing leading diagonally from lower-left", "horizon": "upper third", "foreground": "empty viewing deck with warm red-orange deck lighting", "background": "dense city lights under a dark night sky" },
+      "palette": ["deep night blue-black sky", "warm amber city lights", "red-orange deck light", "silhouetted dark green trees"],
+      "lighting": "night, long-exposure city glow, soft light on the deck",
+      "remove": ["the seated person in the foreground", "noise and blur of the low-quality source"],
+      "generationPrompt": "Photorealistic night travel photo of Bukit Senyum viewpoint in Batam, Indonesia: an empty hilltop viewing platform with wooden railings in the foreground lit by warm red-orange deck lights, looking out over a dense panorama of Batam city lights at night, dark tree line in the middle distance, illuminated high-rise buildings on the left and a warm yellow-lit hotel block on the right, dark night sky, sharp detail, saturated natural color, high-quality travel photography like a professional destination photo, no people, no text, no watermark"
+    },
+    {
+      "id": "ocarina-park",
+      "source": "assets/ocarina-park.jpg",
+      "sourceSize": [663, 382],
+      "landmark": {
+        "name": "360 Madness ride, Ocarina Park, Batam",
+        "mustKeep": ["yellow A-frame pendulum thrill ride", "red '360 MADNESS' sign across the top beam", "purple and yellow circular gondola with yellow seats hanging in the centre", "white entrance truss and metal fence", "green trees and blue sky behind the ride"]
+      },
+      "composition": { "framing": "straight-on wide shot of the full ride, sign at the top", "foreground": "park fence and blue platform", "background": "trees and partly cloudy blue sky" },
+      "palette": ["ride yellow", "sign red", "gondola purple", "sky blue", "tree green"],
+      "lighting": "bright midday sun, clear shadows",
+      "remove": ["the posing visitor in the foreground", "compression blur of the low-quality source", "the small exit sign"],
+      "generationPrompt": "Photorealistic daytime travel photo of the 360 Madness pendulum thrill ride at Ocarina Park, Batam, Indonesia: a large yellow A-frame pendulum ride with a bold red sign reading exactly '360 MADNESS' across the top, a purple and yellow circular gondola with yellow seats hanging in the centre, white steel entrance truss and metal safety fence in front, green trees and bright blue sky with light clouds behind, sharp detail, saturated natural color, high-quality travel photography, no people, no watermark"
+    },
+    {
+      "id": "nagoya-hill",
+      "source": "assets/nagoya-hill.jpg",
+      "sourceSize": [1280, 960],
+      "landmark": {
+        "name": "Nagoya Hill Shopping Mall atrium, Batam",
+        "mustKeep": ["multi-level shopping mall atrium", "yellow steel truss roof structure", "tall silver cylindrical column on the left", "light-blue dome with yellow and blue diamond pattern in the lower foreground", "glass-railed balconies with shops and an escalator on the right"]
+      },
+      "composition": { "framing": "elevated wide shot across the atrium, dome anchoring the lower-right foreground", "foreground": "light-blue patterned dome", "background": "two shop levels under the bright truss roof" },
+      "palette": ["truss yellow", "dome light blue", "warm shop lighting", "white balcony fronts"],
+      "lighting": "bright indoor daylight from the roof, warm shop lights",
+      "remove": ["motion blur on shoppers", "readable shop signage and advertisements", "noise of the low-quality source"],
+      "generationPrompt": "Photorealistic interior travel photo of Nagoya Hill Shopping Mall in Batam, Indonesia: a bright multi-level atrium under a yellow steel truss roof, a tall silver cylindrical column on the left, glass-railed balconies with clothing shops and cafes on two levels, an escalator on the right, and a distinctive light-blue dome with a yellow and blue diamond pattern in the lower foreground, a few distant shoppers as soft background figures, sharp architectural detail, natural indoor light, high-quality travel photography, no readable text or logos, no watermark"
+    }
+  ]
+}
